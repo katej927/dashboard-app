@@ -1,7 +1,5 @@
-import styles from './navBar.module.scss';
-
 const NavBar = () => {
-  return <div>navbar</div>;
+  return <header>navbar</header>;
 };
 
 export default NavBar;

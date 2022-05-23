@@ -1,0 +1,28 @@
+.sideBarWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+  padding: 2rem;
+  background-color: aquamarine;
+  box-shadow: 4px 0px 10px 0px #0000000a;
+
+  img {
+    width: 9rem;
+    margin: 1rem 0;
+  }
+
+  .underLine {
+    margin: 2.5rem 0;
+    border-bottom: 1px solid #edeff1;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .serviceWrapper {
+  }
+
+  .adCenterWrapper {
+  }
+}
