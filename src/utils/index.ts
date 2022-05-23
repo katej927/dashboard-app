@@ -1,1 +1,2 @@
-// export something
+const index = () => {};
+export default index;
