@@ -1,7 +1,11 @@
-import React from 'react';
+import GraghTwoTypes from 'components/graphTwoTypes';
 
 const Dashboard = () => {
-  return <div>index</div>;
+  return (
+    <div>
+      <GraghTwoTypes />
+    </div>
+  );
 };
 
 export default Dashboard;

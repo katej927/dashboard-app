@@ -1,2 +1,3 @@
-const index = () => {};
-export default index;
+import GraphDropDown from './graphDropDown';
+
+export { GraphDropDown };

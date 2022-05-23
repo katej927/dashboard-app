@@ -1,0 +1,25 @@
+@use '/src/styles/constants/colors';
+
+.selectedbtn {
+  width: 123px;
+  height: 40px;
+  border: 1px solid colors.$GRAY_100;
+  border-radius: 10px;
+
+  &.activated {
+    box-shadow: 0 0 0 2px colors.$ACTIVATED_BTN_SHADOW;
+  }
+
+  .colorCircle {
+    width: 10px;
+    height: 10px;
+    background-color: colors.$GRAPH_01;
+    border-radius: 50%;
+  }
+}
+
+.optionList {
+  &.hide {
+    display: none;
+  }
+}
