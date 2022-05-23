@@ -1,5 +1,5 @@
 jsxSingleQuote: true
-semi: false
+semi: true
 printWidth: 120
 proseWrap: never
 singleQuote: true
