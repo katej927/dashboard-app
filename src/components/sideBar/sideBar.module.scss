@@ -1,3 +1,5 @@
+@use '/src/styles/constants/colors';
+
 .sideBarWrapper {
   display: flex;
   flex-direction: column;
@@ -16,10 +18,10 @@
   }
 
   .title {
-    font-size: 1.2rem;
-    color: #94a2ad;
-    font-weight: 700;
     margin: 0 1.8rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: colors.$GREY_300;
   }
 
   .serviceWrapper {
@@ -27,12 +29,12 @@
     flex-direction: column;
 
     .dropDown {
-      border: 1px solid #d1d8dc;
-      border-radius: 10px;
       padding: 2rem;
-      font-weight: 700;
-      font-size: 1.6rem;
       margin-bottom: 5.3rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      border: 1px solid colors.$GREY_100;
+      border-radius: 10px;
     }
   }
 
@@ -42,14 +44,13 @@
     margin-bottom: 26rem;
 
     button {
-      font-size: 1.6rem;
-      background-color: #edeff1;
-      font-weight: 700;
-      color: #586cf5;
-      padding: 2rem;
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
       display: flex;
+      padding: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      background-color: colors.$GREY_50;
+      border-radius: 10px;
 
       p {
         margin: 0 1.2rem;
@@ -60,21 +61,21 @@
   .useGuideWrapper {
     display: flex;
     align-items: center;
-    background-color: #e5f4fd;
     padding: 3rem 2rem;
-    border-radius: 10px;
     margin-bottom: 4rem;
+    background-color: colors.$SECONDARY_01;
+    border-radius: 10px;
 
     .guideTitle {
-      color: #3a474e;
+      margin-bottom: 0.7rem;
       font-size: 1.6rem;
       font-weight: 700;
-      margin-bottom: 0.7rem;
+      color: colors.$GREY_800;
     }
 
     .guideText {
       font-size: 1.2rem;
-      color: #94a2ad;
+      color: colors.$GREY_300;
     }
   }
 
@@ -84,7 +85,7 @@
     p {
       margin-bottom: 1rem;
       font-size: 1.2rem;
-      color: #94a2ad;
+      color: colors.$GREY_300;
     }
   }
 }

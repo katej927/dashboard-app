@@ -1,9 +1,11 @@
+@use '/src/styles/constants/colors';
+
 .headerWrapper {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 2rem 0rem;
-  border-bottom: 1px solid #edeff1;
+  padding: 2rem 0;
+  border-bottom: 1px solid colors.$GREY_50;
 
   .iconWrapper {
     position: absolute;
