@@ -1,0 +1,16 @@
+.headerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 2rem 0rem;
+  border-bottom: 1px solid #edeff1;
+
+  .iconWrapper {
+    position: absolute;
+    top: 0;
+  }
+
+  .userName {
+    font-size: 1.4rem;
+  }
+}

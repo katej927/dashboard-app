@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 35rem;
+  width: 32rem;
   padding: 6rem 4rem;
-  background-color: aquamarine;
   box-shadow: 4px 0px 10px 0px #0000000a;
 
   img {
@@ -50,10 +49,17 @@
       padding: 2rem;
       border-radius: 10px;
       margin-bottom: 0.5rem;
+      display: flex;
+
+      p {
+        margin: 0 1.2rem;
+      }
     }
   }
 
   .useGuideWrapper {
+    display: flex;
+    align-items: center;
     background-color: #e5f4fd;
     padding: 3rem 2rem;
     border-radius: 10px;

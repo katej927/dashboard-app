@@ -1,10 +1,11 @@
 import styles from './sideBar.module.scss';
+import { AdIcon, DashbordIcon, GuideIcon, MainLogo } from 'assets/svgs';
 
 const SideBar = () => {
   return (
     <nav className={styles.sideBarWrapper}>
       <section>
-        <img src='https://lever.me/img/logo-black.svg' alt='logo' />
+        <MainLogo />
         <div className={styles.underLine} />
       </section>
       <section className={styles.serviceWrapper}>
@@ -13,12 +14,21 @@ const SideBar = () => {
       </section>
       <section className={styles.adCenterWrapper}>
         <p className={styles.title}>광고 센터</p>
-        <button type='button'>대시보드</button>
-        <button type='button'>광고관리</button>
+        <button type='button'>
+          <DashbordIcon />
+          <p>대시보드</p>
+        </button>
+        <button type='button'>
+          <AdIcon />
+          <p>광고관리</p>
+        </button>
       </section>
       <section className={styles.useGuideWrapper}>
-        <p className={styles.guideTitle}>레버 이용 가이드</p>
-        <p className={styles.guideText}>시작하기 전에 알아보기</p>
+        <GuideIcon />
+        <div>
+          <p className={styles.guideTitle}>레버 이용 가이드</p>
+          <p className={styles.guideText}>시작하기 전에 알아보기</p>
+        </div>
       </section>
       <section className={styles.footerWrapper}>
         <p>레버는 함께 만들어갑니다.</p>
