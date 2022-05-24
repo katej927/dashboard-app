@@ -1,9 +1,12 @@
 import GraghTwoTypes from 'components/graphTwoTypes';
+import integratedAdStatus from 'dummies/integratedAdStatus.json';
 
 const Dashboard = () => {
+  const { daily } = integratedAdStatus.report;
+
   return (
     <div>
-      <GraghTwoTypes />
+      <GraghTwoTypes integratedAdInfo={daily} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { PRIMARY_OPTIONS } from 'assets/constants';
+import { PRIMARY_OPTIONS } from 'components/graphTwoTypes/constants';
 
 export const graph1stSelectedOptionState = atom<string>({
   key: '#graph1stSelectedOptionState',

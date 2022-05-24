@@ -1,1 +1,1 @@
-export { PRIMARY_OPTIONS } from './constants';
+export { PRIMARY_OPTIONS } from '../components/graphTwoTypes/constants';
