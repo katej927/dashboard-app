@@ -1,5 +1,4 @@
-import { useRecoilState } from 'recoil';
-import { graph1stSelectedOptionState, graph2ndSelectedOptionState } from 'states';
+import { useState } from 'react';
 import {
   VictoryChart,
   VictoryVoronoiContainer,
@@ -9,10 +8,12 @@ import {
   VictoryScatter,
   VictoryAxis,
 } from 'victory';
+import dayjs from 'dayjs';
+import weekday from 'dayjs/plugin/weekday';
 
 import { GraphDropDown } from 'components/common';
 import { filter1stOpt, convertData } from './utils';
-import { PRIMARY_OPTIONS } from './constants';
+import { PRIMARY_OPTIONS, PERIOD_OPTIONS } from './constants';
 import { COLORS } from 'styles/graph';
 import { IDay } from 'types/integratedAd';
 
@@ -21,45 +22,51 @@ interface Props {
 }
 
 const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
-  const [firstOption, setFirstOption] = useRecoilState(graph1stSelectedOptionState);
-  const [secondOption, setSecondOption] = useRecoilState(graph2ndSelectedOptionState);
+  const [firstOption, setFirstOption] = useState(PRIMARY_OPTIONS[0]);
+  const [secondOption, setSecondOption] = useState(PRIMARY_OPTIONS[1]);
+  const [periodOption, setPeriodOption] = useState(PERIOD_OPTIONS[0]);
 
-  const { unit } = convertData(integratedAdInfo, firstOption) ?? {};
-  // const {
-  //   unit: unit2ndOption,
-  //   formatedData: data2ndOption,
-  //   maxValue: max2ndOption,
-  // } = convertData(integratedAdInfo, secondOption);
+  const {
+    unit: unit1stOption,
+    formatedData: data1stOption,
+    maxValue: max1stOption,
+  } = convertData(integratedAdInfo, firstOption) ?? {};
 
-  // console.log(
-  //   'unit1stOption',
-  //   unit1stOption,
-  //   'data1stOption',
-  //   data1stOption,
-  //   'max1stOption',
-  //   max1stOption,
-  //   'unit2ndOption',
-  //   unit2ndOption,
-  //   'data2ndOption',
-  //   data2ndOption,
-  //   'max2ndOption',
-  //   max2ndOption
-  // );
+  const {
+    unit: unit2ndOption,
+    formatedData: data2ndOption,
+    maxValue: max2ndOption,
+  } = convertData(integratedAdInfo, secondOption) ?? {};
 
-  // const max1stOption = Math.max(...convertData('conv').map((obj) => obj.y));
-  // const max2ndOption = Math.max(...convertData('click').map((obj) => obj.y));
-  // console.log('convertData', Math.max(...convertData('conv').map((obj) => obj.y)));
+  dayjs.extend(weekday);
 
-  console.log();
+  console.log('dayjs().add(7, day)', dayjs('2019-01-25').valueOf(), dayjs('2022-05-24').weekday());
+
+  const BTNS_PROPS = [
+    { selectedOption: firstOption, optionList: PRIMARY_OPTIONS, updateOption: setFirstOption, isPeriodBtn: false },
+    {
+      selectedOption: secondOption,
+      optionList: filter1stOpt(firstOption),
+      updateOption: setSecondOption,
+      isPeriodBtn: false,
+    },
+    { selectedOption: periodOption, optionList: PERIOD_OPTIONS, updateOption: setPeriodOption, isPeriodBtn: true },
+  ];
 
   return (
     <article style={{ padding: '50px' }}>
-      <GraphDropDown selectedOption={firstOption} optionList={PRIMARY_OPTIONS} updateOption={setFirstOption} />
-      <GraphDropDown
-        selectedOption={secondOption}
-        optionList={filter1stOpt(firstOption)}
-        updateOption={setSecondOption}
-      />
+      {BTNS_PROPS.map((btn) => {
+        const { selectedOption, optionList, updateOption, isPeriodBtn } = btn;
+        return (
+          <GraphDropDown
+            key={selectedOption}
+            selectedOption={selectedOption}
+            optionList={optionList}
+            updateOption={updateOption}
+            isPeriodBtn={isPeriodBtn}
+          />
+        );
+      })}
       {/* <VictoryChart height={320} width={960} containerComponent={<VictoryVoronoiContainer />}>
         <VictoryGroup
           color={COLORS.GRAPH_01}
@@ -94,6 +101,7 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
       >
         <VictoryAxis
           tickCount={7}
+          tickFormat={(x) => dayjs(x).format('MM월 DD일')}
           style={{
             axis: { strokeWidth: 0.5, fill: 'black' },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
@@ -101,15 +109,12 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
           }}
         />
         <VictoryAxis
-          key='conv'
+          key={firstOption}
           dependentAxis
           tickValues={[0.25, 0.5, 0.75, 1]}
           tickFormat={(t) => {
-            return t * max1stOption;
+            return `${t * (max1stOption ?? 1)}${unit1stOption}`;
           }}
-          // tickFormat={(t) => {
-          //   return t * 1200;
-          // }}
           style={{
             axis: { stroke: 'transparent' },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
@@ -117,26 +122,25 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
             grid: { stroke: '#eeeeee' },
           }}
         />
-        <VictoryAxis
-          dependentAxis
-          key='click'
-          offsetX={960}
-          tickValues={[0.25, 0.5, 0.75, 1]}
-          // tickFormat={(t) => {
-          //   return t * max2ndOption * 2;
-          // }}
-          tickFormat={(t) => {
-            return t * 470000 * 2;
-          }}
-          style={{
-            axis: { stroke: 'trasparent' },
-            tickLabels: { fontSize: 12, padding: 40, fill: '#cccccc', textAnchor: 'start' },
-            ticks: { stroke: '#eeeeee', size: 0 },
-            grid: { stroke: '#eeeeee' },
-          }}
-        />
+        {secondOption !== '없음' && (
+          <VictoryAxis
+            dependentAxis
+            key={secondOption}
+            offsetX={960}
+            tickValues={[0.25, 0.5, 0.75, 1]}
+            tickFormat={(t) => {
+              return `${t * (max2ndOption ?? 1) * 2}${unit2ndOption}`;
+            }}
+            style={{
+              axis: { stroke: 'trasparent' },
+              tickLabels: { fontSize: 12, padding: 40, fill: '#cccccc', textAnchor: 'start' },
+              ticks: { stroke: '#eeeeee', size: 0 },
+              grid: { stroke: '#eeeeee' },
+            }}
+          />
+        )}
         <VictoryLine
-          key='conv'
+          key={firstOption}
           data={data1stOption}
           style={{
             data: {
@@ -144,18 +148,18 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
             },
             labels: { fontSize: 10 },
           }}
-          // y={(datum) => datum.y / max1stOption}
-          y={(datum) => datum.y / 1200}
+          y={(datum) => datum.y / (max1stOption ?? 1)}
           labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
         />
-        <VictoryLine
-          key='click'
-          data={data2ndOption}
-          style={{ data: { stroke: COLORS.GRAPH_02 }, labels: { fontSize: 10 } }}
-          // y={(datum) => datum.y / (max2ndOption * 2)}
-          y={(datum) => datum.y / (470000 * 2)}
-          labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
-        />
+        {secondOption !== '없음' && (
+          <VictoryLine
+            key={secondOption}
+            data={data2ndOption}
+            style={{ data: { stroke: COLORS.GRAPH_02 }, labels: { fontSize: 10 } }}
+            y={(datum) => datum.y / ((max2ndOption ?? 1) * 2)}
+            labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
+          />
+        )}
       </VictoryChart>
     </article>
   );

@@ -6,9 +6,10 @@ interface Props {
   selectedOption: string;
   optionList: string[];
   updateOption: Dispatch<React.SetStateAction<string>>;
+  isPeriodBtn: boolean;
 }
 
-const GraphDropDown = ({ selectedOption, optionList, updateOption }: Props) => {
+const GraphDropDown = ({ selectedOption, optionList, updateOption, isPeriodBtn }: Props) => {
   const [isActivated, setIsActivated] = useState(false);
 
   const handleClick = (isOption: boolean, option?: string) => {
@@ -25,16 +26,18 @@ const GraphDropDown = ({ selectedOption, optionList, updateOption }: Props) => {
         className={cn(styles.selectedbtn, { [styles.activated]: isActivated })}
         onClick={() => handleClick(false)}
       >
-        <div className={styles.colorCircle} />
+        {!isPeriodBtn && <div className={styles.colorCircle} />}
         {selectedOption}
       </button>
-      <div className={cn(styles.optionList, { [styles.hide]: !isActivated })}>
+      <ul className={cn(styles.optionList, { [styles.hide]: !isActivated })}>
         {optionList.map((option) => (
-          <button type='button' key={option} className={styles.optionItem} onClick={() => handleClick(true, option)}>
-            {option}
-          </button>
+          <li key={option}>
+            <button type='button' className={styles.optionItem} onClick={() => handleClick(true, option)}>
+              {option}
+            </button>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
