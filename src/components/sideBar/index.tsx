@@ -3,7 +3,7 @@ import { AdIcon, DashbordIcon, GuideIcon, MainLogo } from 'assets/svgs';
 
 const SideBar = () => {
   return (
-    <nav className={styles.sideBarWrapper}>
+    <aside className={styles.sideBarWrapper}>
       <section>
         <MainLogo />
         <div className={styles.underLine} />
@@ -34,7 +34,7 @@ const SideBar = () => {
         <p>레버는 함께 만들어갑니다.</p>
         <p>이용약관</p>
       </section>
-    </nav>
+    </aside>
   );
 };
 
