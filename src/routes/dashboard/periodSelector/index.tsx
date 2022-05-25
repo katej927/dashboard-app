@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import dayjs from 'dayjs';
@@ -15,7 +15,7 @@ const PeriodSelector = () => {
 
   const [startDate, setStartDate] = useState(DATA_MIN_DATE);
   const [endDate, setEndDate] = useState(A_WEEK_FROM_DATA_MIN_DATE); // minDate로부터 일주일의 기간
-  const [, setPeriod] = useRecoilState(periodState);
+  const setPeriod = useSetRecoilState(periodState);
   const [showCalendar, setShowCalendar] = useState(false);
 
   const onChangeDate = (dates: [Date, Date]) => {
