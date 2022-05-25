@@ -11,4 +11,5 @@
 .integratedAdWrapper {
   @include flexbox.flexbox('center', 'center');
   flex-direction: column;
+  overflow: hidden;
 }
