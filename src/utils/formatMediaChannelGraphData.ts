@@ -1,4 +1,4 @@
-import { IMediaChannel, IRow } from 'types/tmp';
+import { IMediaChannel, IRow } from 'types/mediaChannelData';
 
 const getDefaultRows = (): IRow[] => [
   { key: 'cost', category: '광고비', value: 0, label: '' },
@@ -59,9 +59,11 @@ export const formatMediaChannelGraphData = (data: IMediaChannel[] | undefined) =
 
   Object.values(platformRows).forEach((rowList) => {
     rowList.forEach((row) => {
-      const avg = row.value / (totalData[row.key] ?? 1);
-      row.value = Number((avg * 100).toLocaleString('fullwide', { useGrouping: false }));
-      row.label = totalData[row.key].toLocaleString();
+      const sum = row.value;
+      const avg = sum / (totalData[row.key] ?? 1);
+      const rate = avg * 100;
+      row.value = Number(rate.toLocaleString('fullwide', { useGrouping: false }));
+      row.label = sum.toLocaleString();
     });
   });
 

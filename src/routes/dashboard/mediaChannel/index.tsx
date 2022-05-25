@@ -1,21 +1,21 @@
 import WhiteSection from 'components/whiteSection';
 import MediaChannelGraph from './mediaChannelGraph';
+import MediaChannelTable from './mediaChannelTable';
 
 import styles from './mediaChannel.module.scss';
-import { fetchMediaChannelData } from 'hook/fetchMediaChannelData';
+import { fetchMediaChannelData } from 'services/fetchMediaChannelData';
 import { useQuery } from 'react-query';
 import { useRecoilValue } from 'recoil';
 import { periodState } from 'states';
+import { IPeriod } from 'types/period';
 
 const MediaChannel = () => {
-  const { startDate, endDate } = useRecoilValue(periodState);
+  const date = useRecoilValue<IPeriod>(periodState);
   const { isLoading, data } = useQuery(
-    ['mediaChannelData', { startDate, endDate }],
-    () => fetchMediaChannelData({ startDate, endDate }),
+    ['mediaChannelData', date],
+    () => fetchMediaChannelData(date).then((res) => res.data),
     {
-      staleTime: Infinity,
-      refetchOnWindowFocus: true,
-      keepPreviousData: true,
+      staleTime: 1000 * 6 * 5,
     }
   );
 
@@ -23,8 +23,10 @@ const MediaChannel = () => {
     <main>
       <p className={styles.title}>매체 현황</p>
       <WhiteSection>
-        <MediaChannelGraph data={data} />
-        {/* MediaChannelTable */}
+        <div className={styles.mediaChannelWrapper}>
+          <MediaChannelGraph data={data} />
+          <MediaChannelTable data={data} />
+        </div>
       </WhiteSection>
     </main>
   );
