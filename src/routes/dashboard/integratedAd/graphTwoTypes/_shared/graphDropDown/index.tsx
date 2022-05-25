@@ -40,7 +40,7 @@ const GraphDropDown = ({ selectedOption, optionList, updateOption, isPeriodBtn, 
       </button>
       <ul className={cn(styles.optionList, { [styles.hide]: !isActivated })} ref={ref}>
         {optionList.map((option) => (
-          <li key={option} className={styles.optionLi}>
+          <li key={option} className={cn(styles.optionLi, { [styles.selectedOpt]: selectedOption === option })}>
             <button type='button' className={styles.optionItem} onClick={() => handleClick(true, option)}>
               {option}
             </button>
