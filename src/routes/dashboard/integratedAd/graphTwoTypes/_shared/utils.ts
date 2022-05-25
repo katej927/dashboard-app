@@ -38,17 +38,16 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
       const accX = getWeekNumber(acc[arrIndex].x);
       const curX = getWeekNumber(cur.date);
       const btnValue = Array.isArray(btnOption) ? (cur[btnOption[0]] * cur[btnOption[1]]) / 100 : cur[btnOption];
-
       if (i === 0) return acc;
       daysInWeek += 1;
       if (accX === curX) {
         acc[arrIndex] =
           i === src.length - 1
-            ? { x: accX, y: (acc[arrIndex].y + btnValue) / (daysInWeek += 1) }
+            ? { x: accX, y: Math.round((acc[arrIndex].y + btnValue) / (daysInWeek += 1)) }
             : { x: cur.date, y: acc[arrIndex].y + btnValue };
         return acc;
       }
-      acc[arrIndex] = { x: accX, y: acc[arrIndex].y / daysInWeek };
+      acc[arrIndex] = { x: accX, y: Math.round(acc[arrIndex].y / daysInWeek) };
 
       daysInWeek = 0;
       arrIndex += 1;
@@ -58,9 +57,11 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
     [
       {
         x: integratedAdInfo[0].date,
-        y: Array.isArray(btnOption)
-          ? (integratedAdInfo[0][btnOption[0]] + integratedAdInfo[0][btnOption[1]]) / 100
-          : integratedAdInfo[0][btnOption],
+        y: Math.round(
+          Array.isArray(btnOption)
+            ? (integratedAdInfo[0][btnOption[0]] + integratedAdInfo[0][btnOption[1]]) / 100
+            : integratedAdInfo[0][btnOption]
+        ),
       },
     ]
   );
@@ -68,7 +69,7 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
 
 const convertDailyData = (integratedAdInfo: IDay[], btn: Btn) =>
   integratedAdInfo?.map((day) => {
-    return { x: day.date, y: Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn] };
+    return { x: day.date, y: Math.round(Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn]) };
   });
 
 const formatReturnData = (unitVal: string, integratedAdInfo: IDay[], btn: Btn, periodOption: PeriodOptions) => {
@@ -89,4 +90,32 @@ export const convertData = (integratedAdInfo: IDay[], btnOption: PrimaryOptions,
   if (btnOption === '매출') return formatReturnData('원', integratedAdInfo, 'convValue', periodOption);
   if (btnOption === '전환 수') return formatReturnData('회', integratedAdInfo, ['cvr', 'click'], periodOption);
   return undefined;
+};
+
+export const convertNumToUnit = (num: number) => {
+  if (num < 10000) {
+    return Math.round(num)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  const transUnit = [
+    { value: 1e12, symbol: '조' },
+    { value: 1e11, symbol: '천억' },
+    { value: 1e10, symbol: '백억' },
+    { value: 1e9, symbol: '십억' },
+    { value: 1e8, symbol: '억' },
+    { value: 1e7, symbol: '천만' },
+    { value: 1e6, symbol: '백만' },
+    { value: 1e5, symbol: '십만' },
+    { value: 1e4, symbol: '만' },
+    { value: 1e3, symbol: '천' },
+  ];
+  let i;
+  for (i = 0; i < transUnit.length; i += 1) {
+    if (num >= transUnit[i].value) {
+      return (num / transUnit[i].value).toFixed(1).replace(/\.?0+$/, '') + transUnit[i].symbol;
+    }
+  }
+  return num;
 };

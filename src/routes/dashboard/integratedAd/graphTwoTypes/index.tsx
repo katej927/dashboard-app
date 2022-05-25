@@ -13,9 +13,8 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 
-import { GraphDropDown, filterGraphOpt, convertData, filterPeriodOpt } from './_shared';
+import { GraphDropDown, filterGraphOpt, convertData, filterPeriodOpt, COLORS, convertNumToUnit } from './_shared';
 import { PRIMARY_OPTIONS } from './_shared/constants';
-import { COLORS } from 'styles/graph';
 import styles from './graphTwoType.module.scss';
 import { IDay } from 'types/integratedAd';
 
@@ -120,7 +119,7 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
           style={{
             axis: { strokeWidth: 0.5, fill: 'black' },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: 'grey', size: 0 },
+            ticks: { stroke: COLORS.GREY_50, size: 0 },
           }}
         />
         <VictoryAxis
@@ -128,13 +127,13 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
           dependentAxis
           tickValues={[0.25, 0.5, 0.75, 1]}
           tickFormat={(t) => {
-            return `${t * (max1stOption ?? 1)}${unit1stOption}`;
+            return `${convertNumToUnit(t * (max1stOption ?? 1))}${unit1stOption}`;
           }}
           style={{
             axis: { stroke: 'transparent' },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: '#eeeeee', size: 0 },
-            grid: { stroke: '#eeeeee' },
+            ticks: { stroke: COLORS.GREY_50, size: 0 },
+            grid: { stroke: COLORS.GREY_50 },
           }}
           tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
         />
@@ -145,13 +144,13 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
             offsetX={960}
             tickValues={[0.25, 0.5, 0.75, 1]}
             tickFormat={(t) => {
-              return `${t * (max2ndOption ?? 1) * 2}${unit2ndOption}`;
+              return `${convertNumToUnit(t * (max2ndOption ?? 1) * 2)}${unit2ndOption}`;
             }}
             style={{
               axis: { stroke: 'trasparent' },
               tickLabels: { fontSize: 12, padding: 110, fill: '#cccccc', textAnchor: 'start' },
-              ticks: { stroke: '#eeeeee', size: 0 },
-              grid: { stroke: '#eeeeee' },
+              ticks: { stroke: COLORS.GREY_50, size: 0 },
+              grid: { stroke: COLORS.GREY_50 },
             }}
             tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
           />
