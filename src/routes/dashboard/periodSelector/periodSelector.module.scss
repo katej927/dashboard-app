@@ -3,18 +3,24 @@
 
 .periodSelector {
   button {
-    font-size: 1rem;
+    float: right;
+    font-size: 1.4rem;
+    letter-spacing: 0.2px;
   }
 
   .headerTop {
     position: absolute;
-    top: 0;
+    top: 100px;
+    right: 4rem;
     z-index: levels.$DROPDOWN;
-    width: 480.6px;
+    width: 442.375px;
     height: 60px;
-    padding: 28px 0;
+    padding: 2rem 0;
+    font-size: 2rem;
+    color: rgb(58, 71, 78);
     text-align: center;
     background-color: colors.$WHITE;
+    border: 1px solid colors.$GRAYD;
     border-bottom: 1px solid colors.$GRAYD;
     border-radius: 0.3rem 0.3rem 0 0;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15%);
@@ -22,7 +28,12 @@
 
   > div {
     position: absolute;
-    top: 58px;
+    top: 158px;
+    right: 4rem;
+    z-index: levels.$DROPDOWN;
+    width: 442.375px;
+    border: 1px solid colors.$GRAYD;
+    border-top: 0;
     box-shadow: 0 10px 10px -4px rgba(0, 0, 0, 0.15%);
 
     > div {
@@ -43,8 +54,16 @@
         display: none;
       }
 
-      > :nth-child(2) div {
-        color: colors.$TABLE_HEADER_ROW;
+      > :nth-child(2) {
+        > div {
+          width: 2.7rem;
+          font-size: 1.4rem;
+          line-height: 2.7rem;
+
+          > div {
+            color: colors.$TABLE_HEADER_ROW;
+          }
+        }
       }
     }
   }
@@ -61,8 +80,16 @@
       display: none;
     }
 
-    > :nth-child(2) div {
-      color: colors.$TABLE_HEADER_ROW;
+    > :nth-child(2) {
+      > div {
+        width: 2.7rem;
+        font-size: 1.4rem;
+        line-height: 2.7rem;
+
+        > div {
+          color: colors.$TABLE_HEADER_ROW;
+        }
+      }
     }
   }
 
@@ -73,6 +100,7 @@
     font-size: 100%;
 
     .yearMonth {
+      font-size: 1.4rem;
       line-height: 1.8;
       color: colors.$TABLE_HEADER_ROW;
 
@@ -92,12 +120,14 @@
 
   .buttonWrapper {
     position: absolute;
-    top: 320px;
+    top: 400px;
     display: flex;
     justify-content: flex-end;
-    width: 480.6px;
+    width: 442.375px;
     padding: 1rem;
     background: colors.$WHITE;
+    border: 1px solid colors.$GRAYD;
+    border-top: 0;
     border-radius: 0 0 0.3rem 0.3rem;
 
     :first-child {
@@ -112,6 +142,15 @@
       color: colors.$WHITE;
       background: colors.$PRIMARY;
       border-radius: 6px;
+    }
+  }
+
+  > div > div > :nth-child(2),
+  > div > div > :nth-child(3) {
+    > :nth-child(2) > div > div {
+      width: 2.7rem;
+      font-size: 1.2rem;
+      line-height: 2.7rem;
     }
   }
 }
