@@ -16,3 +16,18 @@ export interface ITrendDataGridItem {
 export interface ITrendDataGrid {
   [key: string]: ITrendDataGridItem;
 }
+
+export interface IDaily {
+  click: number;
+  conv: number;
+  convValue: number;
+  cost: number;
+  cpa: number;
+  cpc: number;
+  ctr: number;
+  cvr: number;
+  date: Date;
+  id: number;
+  imp: number;
+  roas: number;
+}

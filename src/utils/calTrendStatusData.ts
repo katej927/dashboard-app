@@ -1,22 +1,6 @@
 import { transferUnit } from './transferUnit';
 import { INIT_TREND_GRID_TOTAL_DATA } from '../constant/trendData';
-import { ITotalAdData, ITrendDataGrid } from 'types/trendData';
-
-// TODO WILL CHANGE TREND_STATUS TYPE
-interface IDaily {
-  click: number;
-  conv: number;
-  convValue: number;
-  cost: number;
-  cpa: number;
-  cpc: number;
-  ctr: number;
-  cvr: number;
-  date: Date;
-  id: number;
-  imp: number;
-  roas: number;
-}
+import { IDaily, ITotalAdData, ITrendDataGrid } from 'types/trendData';
 
 const calTrendDataToGrid = (data: IDaily[]): ITotalAdData => {
   if (data.length === 0) return INIT_TREND_GRID_TOTAL_DATA;

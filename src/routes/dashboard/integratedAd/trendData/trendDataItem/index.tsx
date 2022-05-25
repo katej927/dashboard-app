@@ -1,14 +1,21 @@
 import cs from './trandDataItem.module.scss';
+import { ITrendDataGridItem } from 'types/trendData';
 
-const TrendDataItem = () => {
+interface Props {
+  title: string;
+  data: ITrendDataGridItem;
+  type: '원' | '%' | '회';
+}
+
+const TrendDataItem = ({ title, data, type }: Props) => {
   return (
     <div className={cs.gridItem}>
-      <title>광고비</title>
+      <title>{title}</title>
       <div className={cs.itemValue}>
-        <strong> 3,000,000</strong>
+        <strong>{` ${data.value} ${type}`}</strong>
         <div>
-          <div className={cs.triangleUp} />
-          <span> 500,000</span>
+          <div className={data.compare ? cs.triangleUp : cs.triangleDown} />
+          <span>{` ${data.compValue} ${type}`}</span>
         </div>
       </div>
     </div>
