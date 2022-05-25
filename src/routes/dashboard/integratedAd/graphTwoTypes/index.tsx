@@ -1,19 +1,10 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { periodState } from 'states';
-import {
-  VictoryChart,
-  VictoryVoronoiContainer,
-  VictoryGroup,
-  VictoryTooltip,
-  VictoryLine,
-  VictoryScatter,
-  VictoryAxis,
-  VictoryLabel,
-} from 'victory';
+import { VictoryChart, VictoryVoronoiContainer, VictoryTooltip, VictoryLine, VictoryAxis, VictoryLabel } from 'victory';
 import dayjs from 'dayjs';
 
-import { GraphDropDown, filterGraphOpt, convertData, filterPeriodOpt, COLORS, convertNumToUnit } from './_shared';
+import { GraphDropDown, filterGraphOpt, convertData, filterPeriodOpt, convertNumToUnit, properties } from './_shared';
 import { PRIMARY_OPTIONS } from './_shared/constants';
 import styles from './graphTwoType.module.scss';
 import { IDay } from 'types/integratedAd';
@@ -81,30 +72,7 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
           isPeriodBtn
         />
       </div>
-      {/* <VictoryChart height={320} width={960} containerComponent={<VictoryVoronoiContainer />}>
-        <VictoryGroup
-          color={COLORS.GRAPH_01}
-          labels={({ datum }) => datum.y}
-          labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-          data={convertData('conv')}
-        >
-          <VictoryLine animate={{ duration: 2000, onLoad: { duration: 1000 } }} />
-          <VictoryScatter size={({ active }) => active && 8} />
-        </VictoryGroup>
-        <VictoryGroup
-          color={COLORS.GRAPH_02}
-          labels={({ datum }) => datum.y}
-          labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
-          data={convertData('click')}
-        >
-          <VictoryLine animate={{ duration: 2000, onLoad: { duration: 1000 } }} />
-          <VictoryScatter size={({ active }) => active && 8} />
-        </VictoryGroup>
-      </VictoryChart> */}
       <VictoryChart
-        domainPadding={{ x: 80, y: 30 }}
-        height={400}
-        width={960}
         containerComponent={
           <VictoryVoronoiContainer
             labels={({ datum }) => {
@@ -112,70 +80,47 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
             }}
           />
         }
+        {...properties.chart}
       >
         <VictoryAxis
-          tickCount={7}
           tickFormat={(x) => (periodOption === '일간' ? dayjs(x).format('MM월 DD일') : x)}
-          style={{
-            axis: { strokeWidth: 0.5, fill: 'black' },
-            tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: COLORS.GREY_50, size: 0 },
-          }}
+          {...properties.yAxis}
         />
         <VictoryAxis
           key={firstOption}
           dependentAxis
-          tickValues={[0.25, 0.5, 0.75, 1]}
           tickFormat={(t) => {
             return `${convertNumToUnit(t * (max1stOption ?? 1))}${unit1stOption}`;
           }}
-          style={{
-            axis: { stroke: 'transparent' },
-            tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: COLORS.GREY_50, size: 0 },
-            grid: { stroke: COLORS.GREY_50 },
-          }}
-          tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
+          tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' {...properties.label} />}
+          {...properties.xAxis1}
         />
         {secondOption !== '없음' && (
           <VictoryAxis
             dependentAxis
             key={secondOption}
             offsetX={960}
-            tickValues={[0.25, 0.5, 0.75, 1]}
             tickFormat={(t) => {
               return `${convertNumToUnit(t * (max2ndOption ?? 1) * 2)}${unit2ndOption}`;
             }}
-            style={{
-              axis: { stroke: 'trasparent' },
-              tickLabels: { fontSize: 12, padding: 110, fill: '#cccccc', textAnchor: 'start' },
-              ticks: { stroke: COLORS.GREY_50, size: 0 },
-              grid: { stroke: COLORS.GREY_50 },
-            }}
-            tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
+            tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' {...properties.label} />}
+            {...properties.xAxis2}
           />
         )}
         <VictoryLine
           key={firstOption}
           data={data1stOption}
-          style={{
-            data: {
-              stroke: COLORS.GRAPH_01,
-            },
-            labels: { fontSize: 10 },
-          }}
           y={(datum) => datum.y / (max1stOption ?? 1)}
-          labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
-          animate={{ duration: 2000, onLoad: { duration: 1000 } }}
+          labelComponent={<VictoryTooltip {...properties.tooltip} />}
+          {...properties.line1}
         />
         {secondOption !== '없음' && (
           <VictoryLine
             key={secondOption}
             data={data2ndOption}
-            style={{ data: { stroke: COLORS.GRAPH_02 }, labels: { fontSize: 10 } }}
             y={(datum) => datum.y / ((max2ndOption ?? 1) * 2)}
-            labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
-            animate={{ duration: 2000, onLoad: { duration: 1000 } }}
+            labelComponent={<VictoryTooltip {...properties.tooltip} />}
+            {...properties.line2}
           />
         )}
       </VictoryChart>
