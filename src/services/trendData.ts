@@ -1,13 +1,9 @@
 import axios from 'axios';
+import { IPeriod } from 'types/period';
 
 const BASE_URL = 'https://madup.shop/api/v1';
 
-interface IDate {
-  startDate: Date;
-  endDate: Date;
-}
-
-export const getTrendData = ({ startDate, endDate }: IDate) => {
+export const getTrendData = ({ startDate, endDate }: IPeriod) => {
   return axios.get(`${BASE_URL}/daily-report`, {
     params: {
       startDate,

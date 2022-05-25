@@ -1,28 +1,17 @@
-import { useState } from 'react';
 import { useQuery } from 'react-query';
 
-import WhiteSection from 'components/whiteSection';
 import styles from './integrated.module.scss';
+import { IPeriod } from 'types/period';
+import WhiteSection from 'components/whiteSection';
+import { periodState } from '../../../states';
 import TrendDataStatus from './trendData';
 import { getTrendData } from '../../../services/trendData';
 import { calTrendData } from '../../../utils/calTrendStatusData';
 import { ITrendDataGrid } from 'types/trendData';
-
-/** TODO WILL DELETE */
-interface IDate {
-  startDate: Date;
-  endDate: Date;
-}
-
-/** TODO WILL DELETE */
-const INIT_DATE: IDate = {
-  startDate: new Date('2022-03-02'),
-  endDate: new Date('2022-04-12'),
-};
+import { useRecoilValue } from 'recoil';
 
 const IntegratedAd = () => {
-  // TODO WILL CHANGE TO ATOM STATE
-  const [date, setDate] = useState<IDate>(INIT_DATE);
+  const date = useRecoilValue<IPeriod>(periodState);
 
   const { data } = useQuery(['trendData', date], () => getTrendData(date).then((res) => res.data), {
     staleTime: 1000 * 6 * 5,
