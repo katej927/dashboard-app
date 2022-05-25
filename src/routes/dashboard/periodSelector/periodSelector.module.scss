@@ -1,0 +1,117 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+
+.periodSelector {
+  button {
+    font-size: 1rem;
+  }
+
+  .headerTop {
+    position: absolute;
+    top: 0;
+    z-index: levels.$DROPDOWN;
+    width: 480.6px;
+    height: 60px;
+    padding: 28px 0;
+    text-align: center;
+    background-color: colors.$WHITE;
+    border-bottom: 1px solid colors.$GRAYD;
+    border-radius: 0.3rem 0.3rem 0 0;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15%);
+  }
+
+  > div {
+    position: absolute;
+    top: 58px;
+    box-shadow: 0 10px 10px -4px rgba(0, 0, 0, 0.15%);
+
+    > div {
+      border: none;
+      border-radius: 0 0 0.3rem 0.3rem;
+    }
+  }
+
+  > div > div > :nth-child(2) {
+    > :first-child {
+      position: relative;
+      padding: 16px 0;
+      text-align: center;
+      background-color: colors.$WHITE;
+      border-bottom: none;
+
+      > :first-child > :last-child {
+        display: none;
+      }
+
+      > :nth-child(2) div {
+        color: colors.$TABLE_HEADER_ROW;
+      }
+    }
+  }
+
+  > div > div > :nth-child(3) > :first-child {
+    position: relative;
+    padding: 16px 0;
+    text-align: center;
+    background-color: colors.$WHITE;
+    border-bottom: none;
+    border-top-left-radius: 0.3rem;
+
+    > :first-child > :first-child {
+      display: none;
+    }
+
+    > :nth-child(2) div {
+      color: colors.$TABLE_HEADER_ROW;
+    }
+  }
+
+  .customHeaderWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10;
+    font-size: 100%;
+
+    .yearMonth {
+      line-height: 1.8;
+      color: colors.$TABLE_HEADER_ROW;
+
+      span {
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .calendarMonthArrowButton {
+      z-index: 910 !important;
+      width: 2em;
+      height: 2em;
+      background: colors.$GRAYD !important;
+      border-radius: 50% !important;
+    }
+  }
+
+  .buttonWrapper {
+    position: absolute;
+    top: 320px;
+    display: flex;
+    justify-content: flex-end;
+    width: 480.6px;
+    padding: 1rem;
+    background: colors.$WHITE;
+    border-radius: 0 0 0.3rem 0.3rem;
+
+    :first-child {
+      margin-right: 15px;
+      color: colors.$GRAYA;
+      background: colors.$WHITE;
+      border: 1px solid colors.$GRAYD;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      color: colors.$WHITE;
+      background: colors.$PRIMARY;
+      border-radius: 6px;
+    }
+  }
+}

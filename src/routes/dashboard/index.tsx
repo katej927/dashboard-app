@@ -1,7 +1,12 @@
-import React from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
+import PeriodSelector from 'routes/dashboard/periodSelector';
 
 const Dashboard = () => {
-  return <div>index</div>;
+  return (
+    <div>
+      <PeriodSelector />
+    </div>
+  );
 };
 
 export default Dashboard;
