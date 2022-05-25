@@ -14,9 +14,10 @@ const MediaChannel = () => {
     ['mediaChannelData', date],
     () => fetchMediaChannelData(date).then((res) => res.data),
     {
-      staleTime: 1000 * 6 * 5,
+      staleTime: 1000,
     }
   );
+  console.log({ isLoading });
 
   return (
     <main>
