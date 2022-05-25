@@ -9,6 +9,7 @@ import {
   VictoryLine,
   VictoryScatter,
   VictoryAxis,
+  VictoryLabel,
 } from 'victory';
 import dayjs from 'dayjs';
 
@@ -103,7 +104,7 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
         </VictoryGroup>
       </VictoryChart> */}
       <VictoryChart
-        domainPadding={{ x: 70, y: 30 }}
+        domainPadding={{ x: 80, y: 30 }}
         height={400}
         width={960}
         containerComponent={
@@ -136,6 +137,7 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
             ticks: { stroke: '#eeeeee', size: 0 },
             grid: { stroke: '#eeeeee' },
           }}
+          tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
         />
         {secondOption !== '없음' && (
           <VictoryAxis
@@ -148,10 +150,11 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
             }}
             style={{
               axis: { stroke: 'trasparent' },
-              tickLabels: { fontSize: 12, padding: 40, fill: '#cccccc', textAnchor: 'start' },
+              tickLabels: { fontSize: 12, padding: 110, fill: '#cccccc', textAnchor: 'start' },
               ticks: { stroke: '#eeeeee', size: 0 },
               grid: { stroke: '#eeeeee' },
             }}
+            tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
           />
         )}
         <VictoryLine

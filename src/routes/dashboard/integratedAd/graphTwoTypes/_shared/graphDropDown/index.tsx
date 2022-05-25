@@ -26,8 +26,6 @@ const GraphDropDown = ({ selectedOption, optionList, updateOption, isPeriodBtn, 
     if (isOption && option) updateOption(option);
   };
 
-  console.log('DropDown optionList', optionList, 'idx', idx);
-
   return (
     <div className={cn(styles.graphDropDownWrapper, styles[`order${idx}`])}>
       <button
