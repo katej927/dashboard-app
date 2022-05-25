@@ -1,0 +1,9 @@
+@use '/src/styles/mixins/flexbox';
+
+.btnWrapper {
+  @include flexbox.flexbox('between');
+
+  .dataBtnWrapper {
+    @include flexbox.flexbox;
+  }
+}

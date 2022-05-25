@@ -1,0 +1,156 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+
+.periodSelector {
+  button {
+    float: right;
+    font-size: 1.4rem;
+    letter-spacing: 0.2px;
+  }
+
+  .headerTop {
+    position: absolute;
+    top: 100px;
+    right: 4rem;
+    z-index: levels.$DROPDOWN;
+    width: 442.375px;
+    height: 60px;
+    padding: 2rem 0;
+    font-size: 2rem;
+    color: rgb(58, 71, 78);
+    text-align: center;
+    background-color: colors.$WHITE;
+    border: 1px solid colors.$GRAYD;
+    border-bottom: 1px solid colors.$GRAYD;
+    border-radius: 0.3rem 0.3rem 0 0;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15%);
+  }
+
+  > div {
+    position: absolute;
+    top: 158px;
+    right: 4rem;
+    z-index: levels.$DROPDOWN;
+    width: 442.375px;
+    border: 1px solid colors.$GRAYD;
+    border-top: 0;
+    box-shadow: 0 10px 10px -4px rgba(0, 0, 0, 0.15%);
+
+    > div {
+      border: none;
+      border-radius: 0 0 0.3rem 0.3rem;
+    }
+  }
+
+  > div > div > :nth-child(2) {
+    > :first-child {
+      position: relative;
+      padding: 16px 0;
+      text-align: center;
+      background-color: colors.$WHITE;
+      border-bottom: none;
+
+      > :first-child > :last-child {
+        display: none;
+      }
+
+      > :nth-child(2) {
+        > div {
+          width: 2.7rem;
+          font-size: 1.4rem;
+          line-height: 2.7rem;
+
+          > div {
+            color: colors.$TABLE_HEADER_ROW;
+          }
+        }
+      }
+    }
+  }
+
+  > div > div > :nth-child(3) > :first-child {
+    position: relative;
+    padding: 16px 0;
+    text-align: center;
+    background-color: colors.$WHITE;
+    border-bottom: none;
+    border-top-left-radius: 0.3rem;
+
+    > :first-child > :first-child {
+      display: none;
+    }
+
+    > :nth-child(2) {
+      > div {
+        width: 2.7rem;
+        font-size: 1.4rem;
+        line-height: 2.7rem;
+
+        > div {
+          color: colors.$TABLE_HEADER_ROW;
+        }
+      }
+    }
+  }
+
+  .customHeaderWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10;
+    font-size: 100%;
+
+    .yearMonth {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: colors.$TABLE_HEADER_ROW;
+
+      span {
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .calendarMonthArrowButton {
+      z-index: 910 !important;
+      width: 2em;
+      height: 2em;
+      background: colors.$GRAYD !important;
+      border-radius: 50% !important;
+    }
+  }
+
+  .buttonWrapper {
+    position: absolute;
+    top: 400px;
+    display: flex;
+    justify-content: flex-end;
+    width: 442.375px;
+    padding: 1rem;
+    background: colors.$WHITE;
+    border: 1px solid colors.$GRAYD;
+    border-top: 0;
+    border-radius: 0 0 0.3rem 0.3rem;
+
+    :first-child {
+      margin-right: 15px;
+      color: colors.$GRAYA;
+      background: colors.$WHITE;
+      border: 1px solid colors.$GRAYD;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      color: colors.$WHITE;
+      background: colors.$PRIMARY;
+      border-radius: 6px;
+    }
+  }
+
+  > div > div > :nth-child(2),
+  > div > div > :nth-child(3) {
+    > :nth-child(2) > div > div {
+      width: 2.7rem;
+      font-size: 1.2rem;
+      line-height: 2.7rem;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { IPeriod } from 'states/dashboard';
 import { IDay, IDayNumberType } from 'types/integratedAd';
 import { PRIMARY_OPTIONS, PERIOD_OPTIONS } from './constants';
 
@@ -13,16 +14,23 @@ interface IFormatedData {
   y: number;
 }
 
+export const filterGraphOpt = (otherOpt: PrimaryOptions) => PRIMARY_OPTIONS.filter((option) => option !== otherOpt);
+
+export const filterPeriodOpt = (preiod: IPeriod) => {
+  const { startDate, endDate } = preiod;
+  const start = dayjs(startDate);
+  const periodDiff = start.diff(endDate, 'd');
+  return Math.abs(periodDiff) > 6 ? ['일간', '주간'] : ['일간'];
+};
+
 const getWeekNumber = (cur: string) => {
   const currentDate = dayjs(cur).date();
   const weekDay = dayjs(cur).startOf('month').day();
   const weekNum = Math.trunc((weekDay - 1 + currentDate) / 7) + 1;
-  return `${dayjs().month() + 1}월 ${weekNum}주`;
+  return `${dayjs(cur).month() + 1}월 ${weekNum}주`;
 };
 
 const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
-  // if (integratedAdInfo.length <= 7) return '1주 이하의 기간이 선택되었습니다.'; // 수정 필요
-
   let arrIndex = 0;
   let daysInWeek = 0;
   return integratedAdInfo.reduce(
@@ -82,6 +90,3 @@ export const convertData = (integratedAdInfo: IDay[], btnOption: PrimaryOptions,
   if (btnOption === '전환 수') return formatReturnData('회', integratedAdInfo, ['cvr', 'click'], periodOption);
   return undefined;
 };
-
-export const filter1stOpt = (firstOpt: PrimaryOptions) =>
-  PRIMARY_OPTIONS.filter((option) => option !== firstOpt).concat('없음');

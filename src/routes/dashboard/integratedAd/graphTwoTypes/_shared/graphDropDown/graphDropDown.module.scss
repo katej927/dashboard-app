@@ -1,25 +1,85 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/constants/sizes';
 
-.selectedbtn {
-  width: 123px;
-  height: 40px;
-  border: 1px solid colors.$GRAY_100;
-  border-radius: 10px;
+$BTN_WIDTH: 123px;
 
-  &.activated {
-    box-shadow: 0 0 0 2px colors.$ACTIVATED_BTN_SHADOW;
+.graphDropDownWrapper {
+  position: relative;
+
+  &.order1 {
+    margin-left: 10px;
   }
 
-  .colorCircle {
-    width: 10px;
-    height: 10px;
-    background-color: colors.$GRAPH_01;
-    border-radius: 50%;
-  }
-}
+  .selectedbtn {
+    width: $BTN_WIDTH;
+    height: 40px;
+    font-size: sizes.$INTEGRATED_AD_FONT_SIZE;
+    border: 1px solid colors.$GREY_100;
+    border-radius: 10px;
+    @include flexbox.flexbox('around', 'center');
 
-.optionList {
-  &.hide {
-    display: none;
+    &.periodBtn {
+      border: none;
+    }
+
+    &:hover {
+      border-color: colors.$ACTIVATED_BTN;
+
+      &.activated {
+        box-shadow: 0 0 0 2px colors.$ACTIVATED_BTN_SHADOW;
+      }
+    }
+
+    .colorCircle {
+      width: 10px;
+      height: 10px;
+      background-color: colors.$GRAPH_01;
+      border-radius: 50%;
+
+      &.order1 {
+        background-color: colors.$GRAPH_02;
+      }
+    }
+  }
+
+  .optionList {
+    position: absolute;
+    z-index: 1;
+    width: $BTN_WIDTH;
+    min-width: $BTN_WIDTH;
+    padding: 5px 0;
+    margin-top: 4px;
+    overflow: hidden;
+    font-size: 14px;
+    background-color: colors.$WHITE;
+    border-radius: 10px;
+    box-shadow: colors.$DROPBOX_SHADOW;
+
+    &.hide {
+      display: none;
+    }
+
+    .optionLi {
+      flex: auto;
+      overflow: hidden;
+      font-size: sizes.$INTEGRATED_AD_FONT_SIZE;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+
+      &:hover {
+        background-color: colors.$ACTIVATED_OPTION;
+
+        .optionItem {
+          font-weight: bold;
+        }
+      }
+
+      .optionItem {
+        width: 100%;
+        padding: 5px;
+      }
+    }
   }
 }
