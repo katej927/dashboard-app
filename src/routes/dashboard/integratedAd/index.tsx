@@ -25,7 +25,7 @@ const IntegratedAd = () => {
       <WhiteSection>
         <div className={styles.integratedAdWrapper}>
           <TrendDataStatus trendData={trendData} isLoading={isLoading} />
-          <GraghTwoTypes integratedAdInfo={data?.curData.report.daily} />
+          <GraghTwoTypes integratedAdInfo={data?.curData.report.daily} isLoading={isLoading} />
         </div>
       </WhiteSection>
     </main>
