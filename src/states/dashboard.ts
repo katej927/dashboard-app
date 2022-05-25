@@ -7,5 +7,5 @@ interface IPeriod {
 
 export const periodState = atom<IPeriod>({
   key: '#periodState',
-  default: { startDate: '', endDate: '' },
+  default: { startDate: '2022-02-01', endDate: '2022-02-08' },
 });
