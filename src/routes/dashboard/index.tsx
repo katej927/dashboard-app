@@ -1,11 +1,13 @@
 import 'react-datepicker/dist/react-datepicker.css';
-import PeriodSelector from 'routes/dashboard/periodSelector';
+import PeriodSelector from './periodSelector';
+import MediaChannel from './mediaChannel';
 
 const Dashboard = () => {
   return (
-    <div>
+    <main>
       <PeriodSelector />
-    </div>
+      <MediaChannel />
+    </main>
   );
 };
 
