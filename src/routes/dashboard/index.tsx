@@ -1,7 +1,12 @@
 import React from 'react';
+import MediaChannel from './mediaChannel';
 
 const Dashboard = () => {
-  return <main>Dashboard</main>;
+  return (
+    <main>
+      <MediaChannel />
+    </main>
+  );
 };
 
 export default Dashboard;
