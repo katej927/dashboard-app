@@ -32,6 +32,7 @@ const GraphDropDown = ({ selectedOption, optionList, updateOption, isPeriodBtn, 
         type='button'
         className={cn(styles.selectedbtn, { [styles.activated]: isActivated, [styles.periodBtn]: isPeriodBtn })}
         onClick={() => handleClick(false)}
+        disabled={optionList.length <= 1}
       >
         {!isPeriodBtn && <div className={cn(styles.colorCircle, styles[`order${idx}`])} />}
         {selectedOption}

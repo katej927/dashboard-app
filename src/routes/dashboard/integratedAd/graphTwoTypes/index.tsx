@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { periodState } from 'states';
-import {
-  VictoryScatter,
-  VictoryChart,
-  VictoryVoronoiContainer,
-  VictoryTooltip,
-  VictoryLine,
-  VictoryAxis,
-  VictoryLabel,
-} from 'victory';
+import { VictoryChart, VictoryVoronoiContainer, VictoryTooltip, VictoryLine, VictoryAxis, VictoryLabel } from 'victory';
 import dayjs from 'dayjs';
 
 import { GraphDropDown, filterGraphOpt, convertData, filterPeriodOpt, convertNumToUnit, properties } from './_shared';
