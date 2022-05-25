@@ -1,8 +1,38 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
 
 .title {
   margin: 2.5rem 0;
   font-size: 2.6rem;
   font-weight: 900;
   color: colors.$GREY_800;
+}
+
+.wrapper {
+  min-width: 80rem;
+
+  .buttonWrapper {
+    @include flexbox.flexbox('between', 'stretch');
+
+    div {
+      padding: 1.2rem 2rem;
+      font-size: 1.4rem;
+      color: colors.$GREY_800;
+      border: 1px solid colors.$GREY_100;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 1.2rem 2rem;
+      font-weight: 700;
+      color: colors.$WHITE;
+      background-color: colors.$PRIMARY;
+      border-radius: 10px;
+    }
+  }
+
+  .adManagementWrapper {
+    margin-top: 4rem;
+    @include flexbox.flexbox('between', 'stretch');
+  }
 }

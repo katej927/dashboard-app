@@ -5,6 +5,7 @@
   @include flexbox.flexbox('between', 'stretch');
   flex-direction: column;
   width: 32rem;
+  min-width: 30rem;
   padding: 6rem 4rem;
   box-shadow: 4px 0 10px 0 #0000000a;
 
