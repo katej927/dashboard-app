@@ -14,7 +14,7 @@
   .buttonWrapper {
     @include flexbox.flexbox('between', 'stretch');
 
-    div {
+    .adDropDown {
       padding: 1.2rem 2rem;
       font-size: 1.4rem;
       color: colors.$GREY_800;
