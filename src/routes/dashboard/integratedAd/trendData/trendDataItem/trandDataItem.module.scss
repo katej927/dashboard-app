@@ -1,3 +1,5 @@
+@use '/src/styles/constants/colors';
+
 .gridItem {
   box-sizing: border-box;
   display: flex;
@@ -8,7 +10,7 @@
   padding: 1.8rem 1.8rem 1.8rem 4rem;
   border-radius: 10px;
   border: 0.1rem solid rgb(237 239 241);
-  background-color: #ffffff;
+  background-color: colors.$WHITE;
 
   > title {
     display: block;

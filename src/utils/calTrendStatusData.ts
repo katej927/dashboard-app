@@ -1,19 +1,18 @@
 import { transferUnit } from './transferUnit';
-import { INIT_TREND_GRID_TOTAL_DATA } from '../constant/trendData';
-import { IDaily, ITotalAdData, ITrendDataGrid } from 'types/trendData';
+import { INIT_TREND_GRID_TOTAL_DATA, TrendResponse } from '../constant/trendData';
+import { IDaily, ITotalAdData, ITrendResponse } from 'types/trendData';
 
 const calTrendDataToGrid = (data: IDaily[]): ITotalAdData => {
+  const res = { ...INIT_TREND_GRID_TOTAL_DATA };
   if (data.length === 0) return INIT_TREND_GRID_TOTAL_DATA;
-  const res = data.reduce((acc, cur) => {
-    acc.roas += cur.roas; // ROAS 계산에 쓰임
-    acc.cost += cur.cost; // 광고비!
-    acc.click += cur.click; // 클릭 횟수!
-    acc.imp += cur.imp; // 노출횟수
-    acc.convValue += cur.convValue; // 매출!
-    acc.cvr += cur.cvr; // 전환수 계산에 쓰임! 전환수 = cvr * click / 100
-    return acc;
+  data.forEach((cur) => {
+    res.roas += cur.roas; // ROAS 계산에 쓰임
+    res.cost += cur.cost; // 광고비!
+    res.click += cur.click; // 클릭 횟수!
+    res.imp += cur.imp; // 노출횟수
+    res.convValue += cur.convValue; // 매출!
+    res.cvr += cur.cvr; // 전환수 계산에 쓰임! 전환수 = cvr * click / 100
   });
-
   return {
     roas: Number((res.roas / data.length).toFixed(2)),
     cost: res.cost,
@@ -24,9 +23,10 @@ const calTrendDataToGrid = (data: IDaily[]): ITotalAdData => {
   };
 };
 
-export const calTrendData = (curData: IDaily[], prevData: IDaily[]): ITrendDataGrid => {
-  const cur = calTrendDataToGrid(curData);
-  const prev = calTrendDataToGrid(prevData);
+export const calTrendData = (data: ITrendResponse) => {
+  const s = !data ? TrendResponse : data;
+  const cur = calTrendDataToGrid(s.curData.report.daily);
+  const prev = calTrendDataToGrid(s.prevData.report.daily);
 
   return {
     roas: {

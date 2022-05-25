@@ -31,3 +31,16 @@ export interface IDaily {
   imp: number;
   roas: number;
 }
+
+export interface ITrendResponse {
+  curData: {
+    report: {
+      daily: IDaily[];
+    };
+  };
+  prevData: {
+    report: {
+      daily: IDaily[];
+    };
+  };
+}
