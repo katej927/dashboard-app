@@ -17,7 +17,10 @@ import styles from './mediaChannelGraph.module.scss';
 const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수'];
 
 const MediaChannelGraph = () => {
-  const { isLoading, data } = useQuery('mediaChannelData', () => fetchMediaChannelData());
+  const { startDate, endDate } = { startDate: '2022-02-01', endDate: '2022-04-20' };
+  const { isLoading, data } = useQuery(['mediaChannelData', { startDate, endDate }], () =>
+    fetchMediaChannelData({ startDate, endDate })
+  );
 
   const { google, facebook, naver, kakao } = formatMediaChannelGraphData(data);
 
