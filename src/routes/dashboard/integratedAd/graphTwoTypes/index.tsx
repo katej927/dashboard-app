@@ -9,7 +9,6 @@ import {
   VictoryAxis,
 } from 'victory';
 import dayjs from 'dayjs';
-import weekday from 'dayjs/plugin/weekday';
 
 import { GraphDropDown } from './_shared';
 import { filter1stOpt, convertData } from './utils';
@@ -30,17 +29,13 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
     unit: unit1stOption,
     formatedData: data1stOption,
     maxValue: max1stOption,
-  } = convertData(integratedAdInfo, firstOption) ?? {};
+  } = convertData(integratedAdInfo, firstOption, periodOption) ?? {};
 
   const {
     unit: unit2ndOption,
     formatedData: data2ndOption,
     maxValue: max2ndOption,
-  } = convertData(integratedAdInfo, secondOption) ?? {};
-
-  dayjs.extend(weekday);
-
-  console.log('dayjs().add(7, day)', dayjs('2019-01-25').valueOf(), dayjs('2022-05-24').weekday());
+  } = convertData(integratedAdInfo, secondOption, periodOption) ?? {};
 
   const BTNS_PROPS = [
     { selectedOption: firstOption, optionList: PRIMARY_OPTIONS, updateOption: setFirstOption, isPeriodBtn: false },

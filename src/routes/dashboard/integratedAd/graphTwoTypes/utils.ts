@@ -1,7 +1,10 @@
+import dayjs from 'dayjs';
 import { IDay, IDayNumberType } from 'types/integratedAd';
-import { PRIMARY_OPTIONS } from './constants';
+import { PRIMARY_OPTIONS, PERIOD_OPTIONS } from './constants';
 
-type Options = typeof PRIMARY_OPTIONS[number];
+type PrimaryOptions = typeof PRIMARY_OPTIONS[number];
+type PeriodOptions = typeof PERIOD_OPTIONS[number];
+type Btn = KeyOfIDayNumberType | KeyOfIDayNumberType[];
 
 type KeyOfIDayNumberType = keyof IDayNumberType;
 
@@ -10,30 +13,82 @@ interface IFormatedData {
   y: number;
 }
 
-const formatReturnData = (
-  unitVal: string,
-  integratedAdInfo: IDay[],
-  btn: KeyOfIDayNumberType | KeyOfIDayNumberType[]
-) => {
-  const formatedData = integratedAdInfo.map((day) => {
+const getWeekNumber = (cur: string) => {
+  // 해당 날짜 (일)
+  const currentDate = dayjs(cur).date();
+
+  // 이번 달 1일이 무슨 요일인지 확인
+  const weekDay = dayjs(cur).startOf('month').day(); // 0: Sun ~ 6: Sat
+
+  // // ((요일 - 1) + 해당 날짜) / 7일로 나누기 = N 주차
+  const weekNum = Math.trunc((weekDay - 1 + currentDate) / 7) + 1;
+  return `${dayjs().month() + 1}월 ${weekNum}주`;
+};
+
+const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
+  if (integratedAdInfo.length <= 7) return '1주 이하의 기간이 선택되었습니다.'; // 수정 필요
+
+  let arrIndex = 0;
+  let daysInWeek = 0;
+  return integratedAdInfo.reduce(
+    (acc, cur, i, src) => {
+      const accX = getWeekNumber(acc[arrIndex].x);
+      const curX = getWeekNumber(cur.date);
+      const btnValue = Array.isArray(btnOption) ? (cur[btnOption[0]] * cur[btnOption[1]]) / 100 : cur[btnOption];
+
+      if (i === 0) return acc;
+      daysInWeek += 1;
+      if (accX === curX) {
+        acc[arrIndex] =
+          i === src.length - 1
+            ? { x: accX, y: (acc[arrIndex].y + btnValue) / (daysInWeek += 1) }
+            : { x: cur.date, y: acc[arrIndex].y + btnValue };
+        return acc;
+      }
+      acc[arrIndex] = { x: accX, y: acc[arrIndex].y / daysInWeek };
+
+      daysInWeek = 0;
+      arrIndex += 1;
+      acc[arrIndex] = { x: cur.date, y: btnValue };
+      return acc;
+    },
+    [
+      {
+        x: integratedAdInfo[0].date,
+        y: Array.isArray(btnOption)
+          ? (integratedAdInfo[0][btnOption[0]] + integratedAdInfo[0][btnOption[1]]) / 100
+          : integratedAdInfo[0][btnOption],
+      },
+    ]
+  );
+};
+
+const formatedData = (integratedAdInfo: IDay[], btn: Btn) =>
+  integratedAdInfo.map((day) => {
     return { x: day.date, y: Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn] };
   });
+
+const formatReturnData = (unitVal: string, integratedAdInfo: IDay[], btn: Btn, periodOption: PeriodOptions) => {
+  // const formatedData = integratedAdInfo.map((day) => {
+  //   return { x: day.date, y: Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn] };
+  // });
   return {
     unit: unitVal,
-    formatedData,
+    formatedData:
+      periodOption === '일간' ? formatedData(integratedAdInfo, btn) : convertWeeklyData(integratedAdInfo, btn),
     maxValue: Math.max(...formatedData.map((obj: IFormatedData) => obj.y)),
   };
 };
 
-export const convertData = (integratedAdInfo: IDay[], btnName: Options) => {
-  if (btnName === 'ROAS') return formatReturnData('%', integratedAdInfo, 'roas');
-  if (btnName === '광고비') return formatReturnData('원', integratedAdInfo, 'cost');
-  if (btnName === '클릭 수') return formatReturnData('회', integratedAdInfo, 'click');
-  if (btnName === '노출 수') return formatReturnData('회', integratedAdInfo, 'imp');
-  if (btnName === '매출') return formatReturnData('원', integratedAdInfo, 'convValue');
-  if (btnName === '전환 수') return formatReturnData('회', integratedAdInfo, ['cvr', 'click']);
+export const convertData = (integratedAdInfo: IDay[], btnOption: PrimaryOptions, periodOption: PeriodOptions) => {
+  if (btnOption === 'ROAS') return formatReturnData('%', integratedAdInfo, 'roas', periodOption);
+  if (btnOption === '광고비') return formatReturnData('원', integratedAdInfo, 'cost', periodOption);
+  if (btnOption === '클릭 수') return formatReturnData('회', integratedAdInfo, 'click', periodOption);
+  if (btnOption === '노출 수') return formatReturnData('회', integratedAdInfo, 'imp', periodOption);
+  if (btnOption === '매출') return formatReturnData('원', integratedAdInfo, 'convValue', periodOption);
+  if (btnOption === '전환 수') return formatReturnData('회', integratedAdInfo, ['cvr', 'click'], periodOption);
   return undefined;
 };
 
-export const filter1stOpt = (firstOpt: Options) =>
+export const filter1stOpt = (firstOpt: PrimaryOptions) =>
   PRIMARY_OPTIONS.filter((option) => option !== firstOpt).concat('없음');
