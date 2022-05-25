@@ -14,19 +14,14 @@ interface IFormatedData {
 }
 
 const getWeekNumber = (cur: string) => {
-  // 해당 날짜 (일)
   const currentDate = dayjs(cur).date();
-
-  // 이번 달 1일이 무슨 요일인지 확인
-  const weekDay = dayjs(cur).startOf('month').day(); // 0: Sun ~ 6: Sat
-
-  // // ((요일 - 1) + 해당 날짜) / 7일로 나누기 = N 주차
+  const weekDay = dayjs(cur).startOf('month').day();
   const weekNum = Math.trunc((weekDay - 1 + currentDate) / 7) + 1;
   return `${dayjs().month() + 1}월 ${weekNum}주`;
 };
 
 const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
-  if (integratedAdInfo.length <= 7) return '1주 이하의 기간이 선택되었습니다.'; // 수정 필요
+  // if (integratedAdInfo.length <= 7) return '1주 이하의 기간이 선택되었습니다.'; // 수정 필요
 
   let arrIndex = 0;
   let daysInWeek = 0;
@@ -63,19 +58,17 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
   );
 };
 
-const formatedData = (integratedAdInfo: IDay[], btn: Btn) =>
+const convertDailyData = (integratedAdInfo: IDay[], btn: Btn) =>
   integratedAdInfo.map((day) => {
     return { x: day.date, y: Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn] };
   });
 
 const formatReturnData = (unitVal: string, integratedAdInfo: IDay[], btn: Btn, periodOption: PeriodOptions) => {
-  // const formatedData = integratedAdInfo.map((day) => {
-  //   return { x: day.date, y: Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn] };
-  // });
+  const formatedData =
+    periodOption === '일간' ? convertDailyData(integratedAdInfo, btn) : convertWeeklyData(integratedAdInfo, btn);
   return {
     unit: unitVal,
-    formatedData:
-      periodOption === '일간' ? formatedData(integratedAdInfo, btn) : convertWeeklyData(integratedAdInfo, btn),
+    formatedData,
     maxValue: Math.max(...formatedData.map((obj: IFormatedData) => obj.y)),
   };
 };
