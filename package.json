@@ -41,6 +41,7 @@
     "react-dom": "^18.1.0",
     "react-error-boundary": "^3.1.4",
     "react-icons": "^4.3.1",
+    "react-loading": "^2.0.3",
     "react-onclickoutside": "^6.12.1",
     "react-query": "^3.39.0",
     "react-router-dom": "^6.3.0",

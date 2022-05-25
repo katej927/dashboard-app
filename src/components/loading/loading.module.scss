@@ -1,0 +1,8 @@
+@use '/src/styles/mixins/flexbox';
+
+.loadingWrapper {
+  @include flexbox.flexbox('center', 'center');
+  position: absolute;
+  z-index: 999;
+  height: 100%;
+}
