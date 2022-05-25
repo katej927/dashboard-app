@@ -11,13 +11,9 @@ import { IPeriod } from 'types/period';
 
 const MediaChannel = () => {
   const date = useRecoilValue<IPeriod>(periodState);
-  const { isLoading, data } = useQuery(
-    ['mediaChannelData', date],
-    () => fetchMediaChannelData(date).then((res) => res.data),
-    {
-      staleTime: 1000,
-    }
-  );
+  const { data } = useQuery(['mediaChannelData', date], () => fetchMediaChannelData(date).then((res) => res.data), {
+    staleTime: 1000,
+  });
 
   return (
     <main>
