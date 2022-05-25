@@ -18,7 +18,6 @@ const MediaChannel = () => {
       staleTime: 1000,
     }
   );
-  console.log({ isLoading });
 
   return (
     <main>
