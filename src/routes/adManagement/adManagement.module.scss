@@ -32,7 +32,10 @@
   }
 
   .adManagementWrapper {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 4rem;
+
     @include flexbox.flexbox('between', 'stretch');
   }
 }

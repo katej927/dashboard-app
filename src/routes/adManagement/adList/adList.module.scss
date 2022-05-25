@@ -2,8 +2,9 @@
 @use '/src/styles/mixins/flexbox';
 
 .adListWrapper {
-  width: 33%;
+  width: 32%;
   padding: 2rem;
+  margin-bottom: 2rem;
   border: 1px solid colors.$GREY_100;
   border-radius: 10px;
 
