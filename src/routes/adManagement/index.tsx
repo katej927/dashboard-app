@@ -1,4 +1,4 @@
-import WhiteSection from 'components/common/whiteSection';
+import WhiteSection from 'components/whiteSection';
 import React from 'react';
 import styles from './adManagement.module.scss';
 

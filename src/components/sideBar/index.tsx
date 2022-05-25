@@ -35,10 +35,10 @@ const SideBar = () => {
           </button>
           <button
             type='button'
-            className={cn({ [styles.isClicked]: pathname === '/admanagement' })}
-            onClick={() => handleClickAdCenterBtn('/admanagement')}
+            className={cn({ [styles.isClicked]: pathname === '/adManagement' })}
+            onClick={() => handleClickAdCenterBtn('/adManagement')}
           >
-            <AdIcon fill={pathname === '/admanagement' ? '#586CF5' : '#3A474E'} />
+            <AdIcon fill={pathname === '/adManagement' ? '#586CF5' : '#3A474E'} />
             <p>광고관리</p>
           </button>
         </div>
