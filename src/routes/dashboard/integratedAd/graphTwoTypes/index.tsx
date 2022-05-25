@@ -11,7 +11,7 @@ import {
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
 
-import { GraphDropDown } from 'components/common';
+import { GraphDropDown } from './_shared';
 import { filter1stOpt, convertData } from './utils';
 import { PRIMARY_OPTIONS, PERIOD_OPTIONS } from './constants';
 import { COLORS } from 'styles/graph';

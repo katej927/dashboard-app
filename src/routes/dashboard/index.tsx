@@ -1,4 +1,4 @@
-import GraghTwoTypes from 'components/graphTwoTypes';
+import GraghTwoTypes from 'routes/dashboard/integratedAd/graphTwoTypes';
 import integratedAdStatus from 'dummies/integratedAdStatus.json';
 
 const Dashboard = () => {
