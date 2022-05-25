@@ -47,6 +47,21 @@ const GraghTwoTypes = ({ integratedAdInfo, isLoading }: Props) => {
     },
   ];
 
+  console.log(
+    'unit1stOption',
+    unit1stOption,
+    'data1stOption',
+    data1stOption,
+    'max1stOption',
+    max1stOption,
+    'unit2ndOption',
+    unit2ndOption,
+    'data2ndOption',
+    data2ndOption,
+    'max2ndOption',
+    max2ndOption
+  );
+
   return (
     <article className={styles.wrapper}>
       <div className={styles.btnWrapper}>
@@ -95,7 +110,7 @@ const GraghTwoTypes = ({ integratedAdInfo, isLoading }: Props) => {
             return `${convertNumToUnit(t * (max1stOption ?? 1))}${unit1stOption}`;
           }}
           tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' {...properties.label1} />}
-          {...properties.xAxis1}
+          {...properties.xAxis}
         />
         {secondOption !== '없음' && (
           <VictoryAxis
@@ -106,7 +121,7 @@ const GraghTwoTypes = ({ integratedAdInfo, isLoading }: Props) => {
               return `${convertNumToUnit(t * (max2ndOption ?? 1) * 2)}${unit2ndOption}`;
             }}
             tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' {...properties.label2} />}
-            {...properties.xAxis2}
+            {...properties.xAxis}
           />
         )}
         {!isLoading && (
@@ -114,7 +129,6 @@ const GraghTwoTypes = ({ integratedAdInfo, isLoading }: Props) => {
             key={firstOption}
             data={data1stOption}
             y={(datum) => datum.y / (max1stOption ?? 1)}
-            labelComponent={<VictoryTooltip {...properties.tooltip} />}
             {...properties.line1}
           />
         )}
@@ -123,7 +137,6 @@ const GraghTwoTypes = ({ integratedAdInfo, isLoading }: Props) => {
             key={secondOption}
             data={data2ndOption}
             y={(datum) => datum.y / ((max2ndOption ?? 1) * 2)}
-            labelComponent={<VictoryTooltip style={{ fontSize: 20, fill: 'red' }} />}
             {...properties.line2}
           />
         )}
