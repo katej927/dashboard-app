@@ -8,9 +8,9 @@
   width: 100%;
   height: 100%;
   padding: 1.8rem 1.8rem 1.8rem 4rem;
-  border-radius: 10px;
-  border: 0.1rem solid colors.$GREY_50;
   background-color: colors.$WHITE;
+  border: 0.1rem solid colors.$GREY_50;
+  border-radius: 10px;
 
   > title {
     display: block;
@@ -18,11 +18,16 @@
     color: colors.$GREY_300;
   }
 
-  .itemValue {
+  .itemOff {
+    opacity: 0;
+  }
 
+  .itemValue {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.7s;
 
     > strong {
       font-size: 1.6rem;
@@ -37,16 +42,16 @@
         display: inline-block;
         width: 0.9rem;
         height: 0.9rem;
-        background: colors.$TRIANGLE_UP;
         clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+        background: colors.$TRIANGLE_UP;
       }
 
       .triangleDown {
         display: inline-block;
         width: 0.9rem;
         height: 0.9rem;
+        clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
         background: colors.$TRIANGLE_DOWN;
-        clip-path: polygon(50% 100% , 0% 0%, 100% 0%);
       }
     }
   }

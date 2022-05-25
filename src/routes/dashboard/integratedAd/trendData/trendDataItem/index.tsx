@@ -1,3 +1,5 @@
+import cx from 'classnames';
+
 import cs from './trandDataItem.module.scss';
 import { ITrendDataGridItem } from 'types/trendData';
 
@@ -5,13 +7,14 @@ interface Props {
   title: string;
   data: ITrendDataGridItem;
   type: '원' | '%' | '회';
+  isLoading: boolean;
 }
 
-const TrendDataItem = ({ title, data, type }: Props) => {
+const TrendDataItem = ({ title, data, type, isLoading }: Props) => {
   return (
     <div className={cs.gridItem}>
       <title>{title}</title>
-      <div className={cs.itemValue}>
+      <div className={cx(cs.itemOff, !isLoading && cs.itemValue)}>
         <strong>{` ${data.value} ${type}`}</strong>
         <div>
           <div className={data.compare ? cs.triangleUp : cs.triangleDown} />
