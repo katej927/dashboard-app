@@ -1,23 +1,14 @@
 import { useRecoilValue } from 'recoil';
 import { useQuery } from 'react-query';
 
+import { IMediaChannel } from 'types/tmp';
 import { periodState } from 'states';
 import { fetchMediaChannelData } from 'hook/fetchMediaChannelData';
 import { formatMediaChannelTableData } from 'utils/formatMediaChannelTableData';
 
 import styles from './mediaChannelTable.module.scss';
 
-const MediaChannelTable = () => {
-  const { startDate, endDate } = useRecoilValue(periodState);
-  const { isLoading, data } = useQuery(
-    ['mediaChannelData', { startDate, endDate }],
-    () => fetchMediaChannelData({ startDate, endDate }),
-    {
-      staleTime: Infinity,
-      refetchOnWindowFocus: true,
-      keepPreviousData: true,
-    }
-  );
+const MediaChannelTable = ({ data }: { data: IMediaChannel[] }) => {
   const { google, facebook, naver, kakao, total } = formatMediaChannelTableData(data);
 
   return (
