@@ -1,9 +1,4 @@
-import { useRecoilValue } from 'recoil';
-import { useQuery } from 'react-query';
-
-import { IMediaChannel } from 'types/tmp';
-import { periodState } from 'states';
-import { fetchMediaChannelData } from 'hook/fetchMediaChannelData';
+import { IMediaChannel } from 'types/mediaChannelData';
 import { formatMediaChannelTableData } from 'utils/formatMediaChannelTableData';
 
 import styles from './mediaChannelTable.module.scss';
