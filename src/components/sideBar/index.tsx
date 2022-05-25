@@ -27,7 +27,7 @@ const SideBar = () => {
           <p className={styles.title}>광고 센터</p>
           <button
             type='button'
-            className={cn({ [styles.isClicked]: pathname === '/' })}
+            className={cn(styles.categoryBtn, { [styles.isClicked]: pathname === '/' })}
             onClick={() => handleClickAdCenterBtn('/')}
           >
             <DashbordIcon fill={pathname === '/' ? '#586CF5' : '#3A474E'} />
@@ -35,7 +35,7 @@ const SideBar = () => {
           </button>
           <button
             type='button'
-            className={cn({ [styles.isClicked]: pathname === '/adManagement' })}
+            className={cn(styles.categoryBtn, { [styles.isClicked]: pathname === '/adManagement' })}
             onClick={() => handleClickAdCenterBtn('/adManagement')}
           >
             <AdIcon fill={pathname === '/adManagement' ? '#586CF5' : '#3A474E'} />

@@ -11,3 +11,9 @@ export const getTrendData = ({ startDate, endDate }: IPeriod) => {
     },
   });
 };
+
+export const getAdManagementData = () => {
+  return axios.get(`${BASE_URL}/advertising`).then((res) => {
+    return res.data.ads;
+  });
+};

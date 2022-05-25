@@ -1,0 +1,50 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+
+.adListWrapper {
+  width: 32%;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid colors.$GREY_100;
+  border-radius: 10px;
+
+  > li {
+    .listTitle {
+      padding-bottom: 4rem;
+      margin-top: 2rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: colors.$GREY_800;
+      border-bottom: 1px solid colors.$GREY_50;
+    }
+
+    .listWrapper {
+      @include flexbox.flexbox('start', 'center');
+      display: flex;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid colors.$GREY_50;
+
+      .listKey {
+        width: 9rem;
+        font-size: 1.2rem;
+        color: colors.$GREY_300;
+      }
+
+      .listValue {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: colors.$GREY_800;
+      }
+    }
+  }
+
+  > button {
+    padding: 1.2rem 2rem;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: colors.$GREY_800;
+    border: 1px solid colors.$GREY_100;
+    border-radius: 10px;
+  }
+}
