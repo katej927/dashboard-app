@@ -1,5 +1,5 @@
 import { transferUnit } from './transferUnit';
-import { INIT_TREND_GRID_TOTAL_DATA, TrendResponse } from '../constant/trendData';
+import { INIT_TREND_DATA, INIT_TREND_GRID_TOTAL_DATA } from '../constant/trendData';
 import { IDaily, ITotalAdData, ITrendResponse } from 'types/trendData';
 
 const calTrendDataToGrid = (data: IDaily[]): ITotalAdData => {
@@ -24,9 +24,9 @@ const calTrendDataToGrid = (data: IDaily[]): ITotalAdData => {
 };
 
 export const calTrendData = (data: ITrendResponse) => {
-  const s = !data ? TrendResponse : data;
-  const cur = calTrendDataToGrid(s.curData.report.daily);
-  const prev = calTrendDataToGrid(s.prevData.report.daily);
+  const res = !data ? INIT_TREND_DATA : data;
+  const cur = calTrendDataToGrid(res.curData.report.daily);
+  const prev = calTrendDataToGrid(res.prevData.report.daily);
 
   return {
     roas: {

@@ -10,7 +10,7 @@ export const INIT_TREND_GRID_TOTAL_DATA = {
   convValue: 0,
 };
 
-export const TrendResponse = {
+export const INIT_TREND_DATA = {
   curData: {
     report: {
       daily: [
