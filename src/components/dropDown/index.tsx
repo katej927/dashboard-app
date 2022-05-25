@@ -29,20 +29,20 @@ const DropDown = ({ value, dropDownList, isInSideBar, handleFilterDropDownList }
   return (
     <div className={styles.dropDownWrapper}>
       <button
-        className={cn(styles.dropDownButton, { [styles.isSelected]: isOpen, [styles.isSideBarWrapper]: isInSideBar })}
+        className={cn(styles.dropDownButton, { [styles.isSelected]: isOpen }, { [styles.isSideBar]: isInSideBar })}
         type='button'
         onClick={handleDropDownOpen}
       >
-        <p className={cn(styles.defaultText, { [styles.isSideBar]: isInSideBar })}>{listValue}</p>
+        {listValue}
         <ArrowIcon className={styles.arrowIcon} />
       </button>
       {isOpen && (
-        <ul className={styles.dropDownListWrapper}>
-          {dropDownList.map((item, index) => (
+        <ul className={cn(styles.dropDownListWrapper)}>
+          {dropDownList.map((item) => (
             <button
               type='button'
-              key={`${item}${index}`}
-              className={cn(styles.dropDownList, { [(styles.isSideBar, styles.isSideBarWrapper)]: isInSideBar })}
+              key={item}
+              className={cn(styles.dropDownList, { [styles.isSideBar]: isInSideBar })}
               onClick={() => onClickDropDownList(item)}
             >
               {item}

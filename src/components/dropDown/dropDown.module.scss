@@ -10,20 +10,18 @@
   justify-content: space-between;
   width: 100%;
   padding: 1.2rem 2rem;
-  font-size: 1.4rem;
   color: colors.$GREY_800;
   border: 1px solid colors.$GREY_100;
   border-radius: 10px;
+}
 
-  .defaultText {
-    margin-right: 2rem;
-    font-size: 1.4rem;
-    color: colors.$GREY_800;
-  }
+.defaultText {
+  margin-right: 2rem;
+  color: colors.$GREY_800;
+}
 
-  .arrowIcon {
-    color: colors.$WHITE;
-  }
+.arrowIcon {
+  color: colors.$WHITE;
 }
 
 .isSelected {
@@ -41,25 +39,21 @@
   background-color: colors.$WHITE;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(41, 50, 55, 15%);
+}
 
-  .dropDownList {
-    width: 100%;
-    padding: 1.2rem 2rem;
-    font-size: 1.4rem;
-    color: colors.$GREY_800;
-    cursor: pointer;
+.dropDownList {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  color: colors.$GREY_800;
+  cursor: pointer;
 
-    &:hover {
-      background-color: colors.$GREY_50;
-    }
+  &:hover {
+    background-color: colors.$GREY_50;
   }
 }
 
 .isSideBar {
+  padding: 2rem;
   font-size: 1.6rem;
   font-weight: 700;
-}
-
-.isSideBarWrapper {
-  padding: 2rem;
 }
