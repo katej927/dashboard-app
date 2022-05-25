@@ -2,9 +2,10 @@
 @use '/src/styles/mixins/flexbox';
 
 .title {
-  margin: 2.5rem 0;
-  font-size: 2.6rem;
-  font-weight: 900;
+  margin-top: 6.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 6rem;
   color: colors.$GREY_800;
 }
 
