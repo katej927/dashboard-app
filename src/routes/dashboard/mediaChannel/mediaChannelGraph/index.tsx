@@ -8,7 +8,7 @@ import {
   VictoryTooltip,
 } from 'victory';
 
-import { IMediaChannel } from 'types/tmp';
+import { IMediaChannel } from 'types/mediaChannelData';
 import { formatMediaChannelGraphData } from 'utils/formatMediaChannelGraphData';
 
 import GRAPH_STYLE from './GRAPH_STYLE';

@@ -1,0 +1,61 @@
+@use 'styles/constants/colors';
+
+.tableWrapper {
+  width: 960px;
+  margin: 5rem 0;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  .mediaChannelTable {
+    display: block;
+    width: inherit;
+    margin: 0 40px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 14.06px;
+    color: colors.$GREY_800;
+
+    thead > tr > th,
+    tbody > tr > td {
+      width: 12.5%;
+      min-width: 120px;
+      padding: 1.2rem 0;
+      text-align: end;
+    }
+
+    thead {
+      border-top: 1px solid colors.$GREY_50;
+
+      > tr {
+        color: colors.$TABLE_HEADER_ROW;
+      }
+    }
+
+    thead > tr > th,
+    tbody > tr {
+      border-bottom: 1px solid colors.$GREY_50;
+    }
+
+    tbody > tr > :first-child {
+      text-align: start;
+    }
+
+    tbody > :last-child {
+      color: colors.$PRIMARY;
+    }
+  }
+}
+
+div::-webkit-scrollbar {
+  display: block;
+  height: 10px;
+}
+
+div::-webkit-scrollbar-track {
+  background: colors.$WHITE;
+}
+
+div ::-webkit-scrollbar-thumb {
+  background-color: colors.$GREY_100;
+  border-radius: 6px;
+}
