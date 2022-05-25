@@ -54,21 +54,6 @@ const GraghTwoTypes = ({ integratedAdInfo, isLoading }: Props) => {
     },
   ];
 
-  console.log(
-    'unit1stOption',
-    unit1stOption,
-    'data1stOption',
-    data1stOption,
-    'max1stOption',
-    max1stOption,
-    'unit2ndOption',
-    unit2ndOption,
-    'data2ndOption',
-    data2ndOption,
-    'max2ndOption',
-    max2ndOption
-  );
-
   return (
     <article className={styles.wrapper}>
       <div className={styles.btnWrapper}>
