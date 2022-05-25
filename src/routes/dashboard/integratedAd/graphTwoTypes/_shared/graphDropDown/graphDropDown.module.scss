@@ -1,0 +1,85 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/constants/sizes';
+
+$BTN_WIDTH: 12.3rem;
+
+.graphDropDownWrapper {
+  position: relative;
+
+  &.order1 {
+    margin-left: 1rem;
+  }
+
+  .selectedbtn {
+    width: $BTN_WIDTH;
+    height: 4rem;
+    font-size: sizes.$INTEGRATED_AD_FONT_SIZE;
+    border: 1px solid colors.$GREY_100;
+    border-radius: 1rem;
+    @include flexbox.flexbox('around', 'center');
+
+    &.periodBtn {
+      border: none;
+    }
+
+    &:hover {
+      border-color: colors.$ACTIVATED_BTN;
+
+      &.activated {
+        box-shadow: 0 0 0 2px colors.$ACTIVATED_BTN_SHADOW;
+      }
+    }
+
+    .colorCircle {
+      width: 1rem;
+      height: 1rem;
+      background-color: colors.$GRAPH_01;
+      border-radius: 50%;
+
+      &.order1 {
+        background-color: colors.$GRAPH_02;
+      }
+    }
+  }
+
+  .optionList {
+    position: absolute;
+    z-index: 1;
+    width: $BTN_WIDTH;
+    min-width: $BTN_WIDTH;
+    padding: 5px 0;
+    margin-top: 0.4rem;
+    overflow: hidden;
+    font-size: 1.4rem;
+    background-color: colors.$WHITE;
+    border-radius: 1rem;
+    box-shadow: colors.$DROPBOX_SHADOW;
+
+    &.hide {
+      display: none;
+    }
+
+    .optionLi {
+      flex: auto;
+      overflow: hidden;
+      font-size: sizes.$INTEGRATED_AD_FONT_SIZE;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+
+      &:hover {
+        background-color: colors.$ACTIVATED_OPTION;
+
+        .optionItem {
+          font-weight: bold;
+        }
+      }
+
+      .optionItem {
+        width: 100%;
+        padding: 0.5rem;
+      }
+    }
+  }
+}
