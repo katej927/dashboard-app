@@ -1,7 +1,3 @@
-interface Tmp {
-  // 👻
-}
-
 export interface IMediaChannel {
   channel: string;
   date: string;
