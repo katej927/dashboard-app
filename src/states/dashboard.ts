@@ -1,9 +1,5 @@
 import { atom } from 'recoil';
-
-interface IPeriod {
-  startDate: string;
-  endDate: string;
-}
+import { IPeriod } from 'types/period';
 
 export const periodState = atom<IPeriod>({
   key: '#periodState',
