@@ -9,16 +9,17 @@
   height: 100%;
   padding: 1.8rem 1.8rem 1.8rem 4rem;
   border-radius: 10px;
-  border: 0.1rem solid rgb(237 239 241);
+  border: 0.1rem solid colors.$GREY_50;
   background-color: colors.$WHITE;
 
   > title {
     display: block;
     font-size: 1.2rem;
-    color: #adb5bd;
+    color: colors.$GREY_300;
   }
 
   .itemValue {
+
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -30,13 +31,13 @@
     > div {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #94a2ad;
+      color: colors.$GREY_300;
 
       .triangleUp {
         display: inline-block;
         width: 0.9rem;
         height: 0.9rem;
-        background: red;
+        background: colors.$TRIANGLE_UP;
         clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
       }
 
@@ -44,7 +45,7 @@
         display: inline-block;
         width: 0.9rem;
         height: 0.9rem;
-        background: #85da47;
+        background: colors.$TRIANGLE_DOWN;
         clip-path: polygon(50% 100% , 0% 0%, 100% 0%);
       }
     }
