@@ -1,7 +1,10 @@
 import cn from 'classnames';
 import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './sideBar.module.scss';
 import { AdIcon, DashbordIcon, GuideIcon, MainLogo } from 'assets/svgs';
+import styles from './sideBar.module.scss';
+import DropDown from 'components/dropDown';
+
+const DROP_DOWN_LIST = ['매드업'];
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -21,7 +24,9 @@ const SideBar = () => {
         </div>
         <div className={styles.serviceWrapper}>
           <p className={styles.title}>서비스</p>
-          <div className={styles.dropDown}>매드업</div>
+          <div>
+            <DropDown value='매드업' dropDownList={DROP_DOWN_LIST} isInSideBar />
+          </div>
         </div>
         <div className={styles.adCenterWrapper}>
           <p className={styles.title}>광고 센터</p>

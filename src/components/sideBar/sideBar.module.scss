@@ -30,6 +30,11 @@
     @include flexbox.flexbox('start', 'stretch');
     flex-direction: column;
 
+    > div {
+      position: relative;
+      margin-bottom: 5.3rem;
+    }
+
     .dropDown {
       padding: 2rem;
       margin-bottom: 5.3rem;

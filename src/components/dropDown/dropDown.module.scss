@@ -7,7 +7,7 @@
 .dropDownButton {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   padding: 1.2rem 2rem;
   font-size: 1.4rem;
@@ -48,10 +48,18 @@
     font-size: 1.4rem;
     color: colors.$GREY_800;
     cursor: pointer;
-    border-radius: 10px;
 
     &:hover {
       background-color: colors.$GREY_50;
     }
   }
+}
+
+.isSideBar {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.isSideBarWrapper {
+  padding: 2rem;
 }
