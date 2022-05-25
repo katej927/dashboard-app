@@ -23,7 +23,12 @@ const MediaChannelGraph = () => {
 
   return (
     <div className={styles.chartWrapper}>
-      <VictoryChart domainPadding={20} theme={VictoryTheme.grayscale} animate={GRAPH_STYLE.animate}>
+      <VictoryChart
+        domainPadding={20}
+        theme={VictoryTheme.grayscale}
+        animate={GRAPH_STYLE.animate}
+        {...GRAPH_STYLE.chart}
+      >
         <VictoryAxis tickValues={[1, 2, 3, 4, 5]} tickFormat={tickFormat} style={GRAPH_STYLE.axis} />
         <VictoryAxis dependentAxis tickFormat={(x) => `${x}%`} style={GRAPH_STYLE.dependentAxis} />
         <VictoryStack colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}>
