@@ -1,15 +1,13 @@
 @use 'styles/constants/colors';
 
 .tableWrapper {
-  width: 960px;
+  width: 100%;
   margin: 5rem 0;
   overflow-x: auto;
   white-space: nowrap;
 
   .mediaChannelTable {
-    display: block;
     width: inherit;
-    margin: 0 40px;
     font-size: 1.2rem;
     font-weight: 500;
     line-height: 14.06px;
@@ -37,7 +35,7 @@
     }
 
     tbody > tr > :first-child {
-      text-align: start;
+      text-align: center;
     }
 
     tbody > :last-child {
