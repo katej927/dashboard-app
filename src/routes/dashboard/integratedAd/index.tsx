@@ -13,7 +13,7 @@ import { useRecoilValue } from 'recoil';
 const IntegratedAd = () => {
   const date = useRecoilValue<IPeriod>(periodState);
 
-  const { data } = useQuery(['trendData', date], () => getTrendData(date).then((res) => res.data), {
+  const { data, isLoading } = useQuery(['trendData', date], () => getTrendData(date).then((res) => res.data), {
     staleTime: 1000 * 6 * 5,
   });
   const trendData: ITrendDataGrid = calTrendData(data);
@@ -22,7 +22,7 @@ const IntegratedAd = () => {
       <p className={styles.title}>통합 광고 현황</p>
       <WhiteSection>
         <div className={styles.integratedAdWrapper}>
-          <TrendDataStatus trendData={trendData} />
+          <TrendDataStatus trendData={trendData} isLoading={isLoading} />
           {/* <TrendDataStatus /> */}
         </div>
       </WhiteSection>
