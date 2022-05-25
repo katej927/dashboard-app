@@ -38,7 +38,7 @@ const GRAPH_STYLE = {
   },
   legend: {
     x: 500,
-    y: 390,
+    y: 380,
     gutter: 40,
     style: { border: { stroke: 'none' }, labels: { fontSize: 10, fill: '#94A2AD' } },
     colorScale: ['#FFEB00', '#4FADF7', '#85DA47', '#AC8AF8'],
