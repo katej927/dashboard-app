@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import dayjs from 'dayjs';
@@ -7,6 +7,7 @@ import { GrFormDown } from 'react-icons/gr';
 
 import { periodState } from 'states';
 import styles from './periodSelector.module.scss';
+import { IPeriod } from 'types/period';
 
 const PeriodSelector = () => {
   const DATA_MIN_DATE = new Date(2022, 1, 1); // 주어진 데이터의 시작날짜, 실제 month에서 -1
@@ -15,7 +16,7 @@ const PeriodSelector = () => {
 
   const [startDate, setStartDate] = useState(DATA_MIN_DATE);
   const [endDate, setEndDate] = useState(A_WEEK_FROM_DATA_MIN_DATE); // minDate로부터 일주일의 기간
-  const setPeriod = useSetRecoilState(periodState);
+  const [period, setPeriod] = useRecoilState<IPeriod>(periodState);
   const [showCalendar, setShowCalendar] = useState(false);
 
   const onChangeDate = (dates: [Date, Date]) => {
@@ -38,9 +39,7 @@ const PeriodSelector = () => {
   return (
     <div className={styles.periodSelector}>
       <button type='button' onClick={onClickPeriodSelector}>
-        {`${dayjs(startDate).format('YYYY년 MM월 DD일')} ~ ${
-          endDate !== null ? dayjs(endDate).format('YYYY년 MM월 DD일') : ''
-        }`}
+        {`${dayjs(period.startDate).format('YYYY년 MM월 DD일')} ~ ${dayjs(period.endDate).format('YYYY년 MM월 DD일')}`}
         <GrFormDown size={15} />
       </button>
       {showCalendar && (
