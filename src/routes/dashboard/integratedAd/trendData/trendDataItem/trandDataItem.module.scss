@@ -18,10 +18,16 @@
     color: colors.$GREY_300;
   }
 
+  .itemOff {
+    opacity: 0;
+  }
+
   .itemValue {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.7s;
 
     > strong {
       font-size: 1.6rem;
