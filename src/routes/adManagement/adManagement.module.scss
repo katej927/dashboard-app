@@ -14,6 +14,11 @@
   .buttonWrapper {
     @include flexbox.flexbox('between', 'stretch');
 
+    > div {
+      position: relative;
+      width: 15rem;
+    }
+
     .adDropDown {
       padding: 1.2rem 2rem;
       font-size: 1.4rem;
@@ -22,7 +27,7 @@
       border-radius: 10px;
     }
 
-    > button {
+    .adMakerBtn {
       padding: 1.2rem 2rem;
       font-weight: 700;
       color: colors.$WHITE;
