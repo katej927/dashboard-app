@@ -1,4 +1,3 @@
-import { useQuery } from 'react-query';
 import {
   VictoryAxis,
   VictoryBar,
@@ -8,28 +7,16 @@ import {
   VictoryTheme,
   VictoryTooltip,
 } from 'victory';
-import { fetchMediaChannelData } from 'hook/fetchMediaChannelData';
+
+import { IMediaChannel } from 'types/tmp';
 import { formatMediaChannelGraphData } from 'utils/formatMediaChannelGraphData';
 
 import GRAPH_STYLE from './GRAPH_STYLE';
 import styles from './mediaChannelGraph.module.scss';
-import { periodState } from 'states';
-import { useRecoilValue } from 'recoil';
 
 const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수'];
 
-const MediaChannelGraph = () => {
-  const { startDate, endDate } = useRecoilValue(periodState);
-  const { isLoading, data } = useQuery(
-    ['mediaChannelData', { startDate, endDate }],
-    () => fetchMediaChannelData({ startDate, endDate }),
-    {
-      staleTime: Infinity,
-      refetchOnWindowFocus: true,
-      keepPreviousData: true,
-    }
-  );
-
+const MediaChannelGraph = ({ data }: { data: IMediaChannel[] }) => {
   const { google, facebook, naver, kakao } = formatMediaChannelGraphData(data);
 
   return (
