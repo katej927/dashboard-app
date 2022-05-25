@@ -13,9 +13,8 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 
-import { GraphDropDown } from './_shared';
-import { filterGraphOpt, convertData, filterPeriodOpt } from './utils';
-import { PRIMARY_OPTIONS } from './constants';
+import { GraphDropDown, filterGraphOpt, convertData, filterPeriodOpt } from './_shared';
+import { PRIMARY_OPTIONS } from './_shared/constants';
 import { COLORS } from 'styles/graph';
 import styles from './graphTwoType.module.scss';
 import { IDay } from 'types/integratedAd';
@@ -58,7 +57,7 @@ const GraghTwoTypes = ({ integratedAdInfo }: Props) => {
   ];
 
   return (
-    <article style={{ padding: '50px' }}>
+    <article className={styles.wrapper}>
       <div className={styles.btnWrapper}>
         <div className={styles.dataBtnWrapper}>
           {BTNS_PROPERTIES.map((btn, idx) => {

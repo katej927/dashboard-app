@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { IPeriod } from 'states/dashboard';
+import { IPeriod } from 'types/period';
 import { IDay, IDayNumberType } from 'types/integratedAd';
 import { PRIMARY_OPTIONS, PERIOD_OPTIONS } from './constants';
 
@@ -33,7 +33,7 @@ const getWeekNumber = (cur: string) => {
 const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
   let arrIndex = 0;
   let daysInWeek = 0;
-  return integratedAdInfo.reduce(
+  return integratedAdInfo?.reduce(
     (acc, cur, i, src) => {
       const accX = getWeekNumber(acc[arrIndex].x);
       const curX = getWeekNumber(cur.date);
@@ -67,7 +67,7 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
 };
 
 const convertDailyData = (integratedAdInfo: IDay[], btn: Btn) =>
-  integratedAdInfo.map((day) => {
+  integratedAdInfo?.map((day) => {
     return { x: day.date, y: Array.isArray(btn) ? (day[btn[0]] * day[btn[1]]) / 100 : day[btn] };
   });
 
@@ -77,7 +77,7 @@ const formatReturnData = (unitVal: string, integratedAdInfo: IDay[], btn: Btn, p
   return {
     unit: unitVal,
     formatedData,
-    maxValue: Math.max(...formatedData.map((obj: IFormatedData) => obj.y)),
+    maxValue: formatedData && Math.max(...formatedData.map((obj: IFormatedData) => obj.y)),
   };
 };
 

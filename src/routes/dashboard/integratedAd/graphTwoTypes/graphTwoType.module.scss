@@ -1,9 +1,13 @@
 @use '/src/styles/mixins/flexbox';
 
-.btnWrapper {
-  @include flexbox.flexbox('between');
+.wrapper {
+  margin-top: 42px;
 
-  .dataBtnWrapper {
-    @include flexbox.flexbox;
+  .btnWrapper {
+    @include flexbox.flexbox('between');
+
+    .dataBtnWrapper {
+      @include flexbox.flexbox;
+    }
   }
 }

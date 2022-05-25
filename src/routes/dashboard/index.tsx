@@ -1,15 +1,13 @@
-import GraghTwoTypes from 'routes/dashboard/integratedAd/graphTwoTypes';
-import integratedAdStatus from 'dummies/integratedAdStatus.json';
 import 'react-datepicker/dist/react-datepicker.css';
 import PeriodSelector from './periodSelector';
 import MediaChannel from './mediaChannel';
+import IntegratedAd from './integratedAd';
 
 const Dashboard = () => {
-  const { daily } = integratedAdStatus.report;
   return (
     <main>
       <PeriodSelector />
-      <GraghTwoTypes integratedAdInfo={daily} />
+      <IntegratedAd />
       <MediaChannel />
     </main>
   );

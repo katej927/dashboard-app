@@ -60,7 +60,7 @@ export const formatMediaChannelGraphData = (data: IMediaChannel[] | undefined) =
   Object.values(platformRows).forEach((rowList) => {
     rowList.forEach((row) => {
       const avg = row.value / (totalData[row.key] ?? 1);
-      row.value = avg * 100;
+      row.value = Number((avg * 100).toLocaleString('fullwide', { useGrouping: false }));
       row.label = totalData[row.key].toLocaleString();
     });
   });
