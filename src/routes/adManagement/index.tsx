@@ -1,9 +1,12 @@
-import React from 'react';
 import WhiteSection from 'components/whiteSection';
 import styles from './adManagement.module.scss';
 import AdList from './adList';
+import { useQuery } from 'react-query';
+import { getAdManagementData } from 'services/trendData';
 
 const AdManagement = () => {
+  const { data } = useQuery('adManagement', getAdManagementData);
+
   return (
     <main>
       <p className={styles.title}>광고관리</p>
@@ -14,7 +17,9 @@ const AdManagement = () => {
             <button type='button'>광고 만들기</button>
           </section>
           <section className={styles.adManagementWrapper}>
-            <AdList />
+            {data?.map((adList: IAdManagementList) => (
+              <AdList key={adList.id} adList={adList} />
+            ))}
           </section>
         </div>
       </WhiteSection>

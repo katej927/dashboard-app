@@ -9,7 +9,7 @@
   padding: 6rem 4rem;
   box-shadow: 4px 0 10px 0 #0000000a;
 
-  img {
+  > img {
     width: 13rem;
   }
 
@@ -44,7 +44,7 @@
     @include flexbox.flexbox('start', 'stretch');
     flex-direction: column;
 
-    button {
+    .categoryBtn {
       display: flex;
       padding: 2rem;
       margin-bottom: 0.5rem;
@@ -53,7 +53,7 @@
       color: colors.$GREY_800;
       border-radius: 10px;
 
-      p {
+      > p {
         margin: 0 1.2rem;
       }
     }
@@ -71,7 +71,7 @@
     background-color: colors.$SECONDARY_01;
     border-radius: 10px;
 
-    div {
+    > div {
       margin: 0 0.8rem;
     }
 
@@ -91,7 +91,7 @@
   .footerWrapper {
     padding: 0 2rem;
 
-    p {
+    > p {
       margin-bottom: 1rem;
       font-size: 1.2rem;
       color: colors.$GREY_300;

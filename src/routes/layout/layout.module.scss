@@ -10,5 +10,6 @@
 .mainWrapper {
   flex-grow: 1;
   padding: 0 4rem;
+  overflow: auto;
   background-color: colors.$BG_G;
 }
