@@ -1,4 +1,4 @@
-import { IMediaChannel, IRow } from 'types/tmp';
+import { IMediaChannel, IRow } from 'types/mediaChannelData';
 
 const getDefaultRows = (): IRow[] => [
   { key: 'cost', category: '광고비', value: 0 },

@@ -1,5 +1,6 @@
 import WhiteSection from 'components/whiteSection';
 import MediaChannelGraph from './mediaChannelGraph';
+import MediaChannelTable from './mediaChannelTable';
 
 import styles from './mediaChannel.module.scss';
 import { fetchMediaChannelData } from 'services/fetchMediaChannelData';
@@ -21,8 +22,10 @@ const MediaChannel = () => {
     <main>
       <p className={styles.title}>매체 현황</p>
       <WhiteSection>
-        <MediaChannelGraph data={data} />
-        {/* MediaChannelTable */}
+        <div className={styles.mediaChannelWrapper}>
+          <MediaChannelGraph data={data} />
+          <MediaChannelTable data={data} />
+        </div>
       </WhiteSection>
     </main>
   );
