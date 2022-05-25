@@ -1,0 +1,8 @@
+@use '/src/styles/constants/colors';
+
+.title {
+  margin: 2.5rem 0;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: colors.$GREY_800;
+}
