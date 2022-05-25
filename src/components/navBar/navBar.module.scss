@@ -1,9 +1,8 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
 
 .headerWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  @include flexbox.flexbox('end');
   padding: 2rem 0;
   border-bottom: 1px solid colors.$GREY_50;
 
@@ -11,7 +10,7 @@
     margin: 0 1.7rem;
   }
 
-  .userName {
+  p {
     font-size: 1.4rem;
     color: colors.$GREY_800;
   }

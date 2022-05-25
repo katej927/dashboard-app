@@ -11,6 +11,7 @@ const SideBar = () => {
     navigate(route);
   };
 
+  // TODO: isClicked 부분 리팩토링
   return (
     <aside className={styles.sideBarWrapper}>
       <section>

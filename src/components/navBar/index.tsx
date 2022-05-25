@@ -4,16 +4,10 @@ import { ProfileIcon, AlarmIcon, SettingIcon } from 'assets/svgs';
 const NavBar = () => {
   return (
     <header className={styles.headerWrapper}>
-      <div className={styles.iconWrapper}>
-        <AlarmIcon />
-      </div>
-      <div className={styles.iconWrapper}>
-        <SettingIcon />
-      </div>
-      <div className={styles.iconWrapper}>
-        <ProfileIcon />
-      </div>
-      <p className={styles.userName}>원티드님</p>
+      <AlarmIcon className={styles.iconWrapper} />
+      <SettingIcon className={styles.iconWrapper} />
+      <ProfileIcon className={styles.iconWrapper} />
+      <p>원티드님</p>
     </header>
   );
 };
