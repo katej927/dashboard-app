@@ -36,14 +36,14 @@ const DropDown = ({ value, dropDownList, isInSideBar, handleFilterDropDownList }
     <div className={styles.dropDownWrapper}>
       <button
         type='button'
-        className={cn(styles.dropDownInputWrapper, { [styles.isSideBar]: isInSideBar })}
+        className={cn(
+          styles.dropDownInputWrapper,
+          { [styles.isSideBar]: isInSideBar },
+          { [styles.isSelected]: isOpen }
+        )}
         onClick={handleDropDownOpen}
       >
-        <input
-          className={cn(styles.dropDownButton, { [styles.isSelected]: isOpen })}
-          type='button'
-          onBlur={() => onBlueInput()}
-        />
+        <input className={cn(styles.dropDownButton)} type='button' onBlur={() => onBlueInput()} />
         <p className={styles.defaultText}>{listValue}</p>
         <ArrowIcon className={cn(styles.arrowIcon, { [styles.animated]: isOpen })} />
       </button>

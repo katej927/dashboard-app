@@ -203,4 +203,8 @@ y2축에 할당할 `VictoryAxis`와 `VictoryLine` 를 key로 연결하여 출현
   - 모니터 크기에 따른 횡스크롤 삽입
 
 ## 광고관리 페이지
-
+### 1. 광고 데이터 렌더링
+https://user-images.githubusercontent.com/71131248/170404198-9055927d-e6c7-4297-997e-1c4f067ec4e3.mov
+- 구현 사항
+  - react-query를 이용해 데이터를 받아온 후, 해당 데이터 렌더링.
+  - 받아 온 데이터를 드롭다운의 클릭한 item 값에 맞게 필터링.
