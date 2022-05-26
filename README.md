@@ -79,7 +79,7 @@
 
 ### 2. 통합 광고 현황
 
-**광고 현황**
+**2.1. 광고 현황**
 
 - 구현사항
   - 선택된 날짜의 통합 상태를 제공
@@ -91,11 +91,97 @@
   - 값의 단위를 통일시키기 위한 유틸 작성을 위해 공통의 케이스를 찾기가 어려웠음
   - 선택된 날짜의 데이터를 계산하는 부분이 비교적 깔금하지 못함
 
-**통합 광고 현황 그래프**
+**2.2. 통합 광고 현황 그래프**
+
+1.  드롭 다운
+
+<details>
+  <summary>주간/일별 로 선택가능</summary>
+  
+- 주간
+    - 선택 가능한 경우
+        
+        7일 이하의 기간 선택 시, 기간을 선택하는 드롭다운을 비활성화 시켜 주간 선택 불가
+        
+    - 구현 방법
+        
+        > 동일 주차의 평균을 구하여 주차 별로 반환
+        > 
+        
+        1. 선택한 날짜들이 해당하는 월의 주차(n월 n주)를 구함
+
+        2. 동일한 주에 해당하는 날짜들의 수를 구하고 데이터는 모두 더한 후 `해당 주차의 데이터 총합/해당 주차의 날짜 수`를 반환하여 주차별 평균을 반환
+- 일별
+    
+    선택한 기간의 모든 데이터를 일별로 보여주되 x축은 기본적으로 `tickCount` 가 7로 설정되어 실제 사이트와 동일한 x축의 갯수 출현
+
+</details>
+
+<details>
+  <summary>선택 시 반환할 데이터 계산</summary>
+<br/>
+  
+> 3가지의 드롭다운에서 옵션을 선택하면 해당 옵션에 대한 단위 값 (%, 원, 회)과 그래프에 보여줄 데이터를 가공
+> 
+
+```tsx
+const formatReturnData = (unitVal: string, integratedAdInfo: IDay[], btn: Btn, periodOption: PeriodOptions) => {
+  const formatedData =
+    periodOption === '일간' ? convertDailyData(integratedAdInfo, btn) : convertWeeklyData(integratedAdInfo, btn);
+  return {
+    unit: unitVal,
+    formatedData,
+    maxValue: formatedData && Math.max(...formatedData.map((obj: IFormatedData) => obj.y)),
+  };
+};
+
+export const convertData = (integratedAdInfo: IDay[], btnOption: PrimaryOptions, periodOption: PeriodOptions) => {
+  if (btnOption === 'ROAS') return formatReturnData('%', integratedAdInfo, 'roas', periodOption);
+  if (btnOption === '광고비') return formatReturnData('원', integratedAdInfo, 'cost', periodOption);
+  if (btnOption === '클릭 수') return formatReturnData('회', integratedAdInfo, 'click', periodOption);
+  if (btnOption === '노출 수') return formatReturnData('회', integratedAdInfo, 'imp', periodOption);
+  if (btnOption === '매출') return formatReturnData('원', integratedAdInfo, 'convValue', periodOption);
+  if (btnOption === '전환 수') return formatReturnData('회', integratedAdInfo, ['cvr', 'click'], periodOption);
+  return undefined;
+};
+```
+</details>
+
+<details>
+  <summary>첫 번째 드롭다운에서 선택한 지표를 두번째 드롭다운(옵셔널)에서 선택 불가</summary>
+
+`filter` 를 활용해서 제작
+  
+</details>
+
+<details>
+  <summary>2가지 드롭다운이 모두 선택될 경우, 그래프 우측에 y2 눈금자 제공</summary>
+
+y2축에 할당할 `VictoryAxis`와 `VictoryLine` 를 key로 연결하여 출현시킴
+</details>
+
+2. 그래프
+<details>
+  <summary>숫자 단위 변환</summary>
+
+- 값이 1만 이하일 경우
+    
+    천 단위마다 콤마(`,`) 형성
+    
+- 값이 1만~1조 일 경우
+    
+    한글 단위로 변환 (ex. 5백만원)
+</details>
+        
+<details>
+  <summary>툴팁 제공</summary>
+
+그래프의 선을 hover하면 툴팁 확인 가능
+</details>
 
 ### 3. 매체 현황
 
-**매체 현황 그래프**
+**3.1. 매체 현황 그래프**
 
 [https://user-images.githubusercontent.com/79626675/170167392-a557045c-2612-4e9a-a3b2-2b96f94e690e.mov](https://user-images.githubusercontent.com/79626675/170167392-a557045c-2612-4e9a-a3b2-2b96f94e690e.mov)
 
@@ -110,7 +196,7 @@
   - y축 항목들의 누적 값을 구한 후 전체 데이터에 해당하는 비율을 계산하는 것,
   - 툴팁에는 비율이 아닌 실제 데이터 값을 넣는 것이 복잡했다.
 
-**매체 현황 테이블 차트** 
+**3.2. 매체 현황 테이블 차트** 
 
 - 구현 사항
   - `util/formatMediaChannelTableData` 로부터 전달받은 데이터를 렌더링
