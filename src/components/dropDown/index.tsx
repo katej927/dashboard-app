@@ -26,15 +26,26 @@ const DropDown = ({ value, dropDownList, isInSideBar, handleFilterDropDownList }
     }
   };
 
+  const onBlueInput = () => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 100);
+  };
+
   return (
     <div className={styles.dropDownWrapper}>
       <button
-        className={cn(styles.dropDownButton, { [styles.isSelected]: isOpen }, { [styles.isSideBar]: isInSideBar })}
         type='button'
+        className={cn(styles.dropDownInputWrapper, { [styles.isSideBar]: isInSideBar })}
         onClick={handleDropDownOpen}
       >
-        {listValue}
-        <ArrowIcon className={styles.arrowIcon} />
+        <input
+          className={cn(styles.dropDownButton, { [styles.isSelected]: isOpen })}
+          type='button'
+          onBlur={() => onBlueInput()}
+        />
+        <p className={styles.defaultText}>{listValue}</p>
+        <ArrowIcon className={cn(styles.arrowIcon, { [styles.animated]: isOpen })} />
       </button>
       {isOpen && (
         <ul className={cn(styles.dropDownListWrapper)}>
