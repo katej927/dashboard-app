@@ -28,7 +28,7 @@ const AdManagement = () => {
   return (
     <main>
       <p className={styles.title}>광고관리</p>
-      <WhiteSection>
+      <WhiteSection minWidth='fit-content'>
         <div className={styles.wrapper}>
           <section className={styles.buttonWrapper}>
             <div>

@@ -23,7 +23,7 @@ const Layout = () => {
 
   return (
     <div className={styles.layoutWrapper}>
-      {loading && <Loading />}
+      {loading && <Loading loading={loading} />}
       <SideBar />
       <div className={styles.mainWrapper}>
         <NavBar />

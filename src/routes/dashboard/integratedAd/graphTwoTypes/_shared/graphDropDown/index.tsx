@@ -32,6 +32,7 @@ const GraphDropDown = ({ selectedOption, optionList, updateOption, isPeriodBtn, 
         type='button'
         className={cn(styles.selectedbtn, { [styles.activated]: isActivated, [styles.periodBtn]: isPeriodBtn })}
         onClick={() => handleClick(false)}
+        disabled={optionList.length <= 1}
       >
         {!isPeriodBtn && <div className={cn(styles.colorCircle, styles[`order${idx}`])} />}
         {selectedOption}
@@ -39,7 +40,7 @@ const GraphDropDown = ({ selectedOption, optionList, updateOption, isPeriodBtn, 
       </button>
       <ul className={cn(styles.optionList, { [styles.hide]: !isActivated })} ref={ref}>
         {optionList.map((option) => (
-          <li key={option} className={styles.optionLi}>
+          <li key={option} className={cn(styles.optionLi, { [styles.selectedOpt]: selectedOption === option })}>
             <button type='button' className={styles.optionItem} onClick={() => handleClick(true, option)}>
               {option}
             </button>
