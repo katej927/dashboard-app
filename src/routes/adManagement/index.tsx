@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import AdList from './adList';
 import styles from './adManagement.module.scss';
@@ -9,8 +9,15 @@ import DropDown from 'components/dropDown';
 const DROP_DOWN_LIST = ['전체 광고', '진행중인 광고', '중지 광고'];
 
 const AdManagement = () => {
-  const { data } = useQuery('adManagement', getAdManagementData);
+  const { data, isLoading } = useQuery('adManagement', getAdManagementData);
+
   const [adManagementList, setAdManagementList] = useState(data);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setAdManagementList(data);
+    }
+  }, [data, isLoading]);
 
   const handleFilterDropDownList = (item: string) => {
     if (item === '전체 광고') setAdManagementList(data);
