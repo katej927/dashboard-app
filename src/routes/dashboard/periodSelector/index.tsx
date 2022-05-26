@@ -32,7 +32,7 @@ const PeriodSelector = () => {
   const onClickSetPeriod = () => {
     const start = dayjs(startDate).format('YYYY-MM-DD');
     const end = dayjs(endDate).format('YYYY-MM-DD');
-    setPeriod((prev) => ({ ...prev, ['startDate']: start, ['endDate']: end }));
+    setPeriod((prev) => ({ ...prev, startDate: start, endDate: end }));
     onClickPeriodSelector();
   };
 
