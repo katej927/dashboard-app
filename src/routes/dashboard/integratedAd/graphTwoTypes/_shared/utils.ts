@@ -38,8 +38,11 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
       const accX = getWeekNumber(acc[arrIndex].x);
       const curX = getWeekNumber(cur.date);
       const btnValue = Array.isArray(btnOption) ? (cur[btnOption[0]] * cur[btnOption[1]]) / 100 : cur[btnOption];
+
       if (i === 0) return acc;
+
       daysInWeek += 1;
+
       if (accX === curX) {
         acc[arrIndex] =
           i === src.length - 1
@@ -47,6 +50,7 @@ const convertWeeklyData = (integratedAdInfo: IDay[], btnOption: Btn) => {
             : { x: cur.date, y: acc[arrIndex].y + btnValue };
         return acc;
       }
+
       acc[arrIndex] = { x: accX, y: Math.round(acc[arrIndex].y / daysInWeek) };
 
       daysInWeek = 0;

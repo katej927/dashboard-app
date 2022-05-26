@@ -68,12 +68,20 @@ $BTN_WIDTH: 12.3rem;
       white-space: nowrap;
       cursor: pointer;
 
-      &:hover {
+      &.selectedOpt {
         background-color: colors.$ACTIVATED_OPTION;
 
         .optionItem {
           font-weight: bold;
         }
+
+        &:hover {
+          background-color: colors.$ACTIVATED_OPTION;
+        }
+      }
+
+      &:hover {
+        background-color: colors.$GREY_10;
       }
 
       .optionItem {

@@ -10,7 +10,7 @@ const AdManagement = () => {
   return (
     <main>
       <p className={styles.title}>광고관리</p>
-      <WhiteSection>
+      <WhiteSection minWidth='fit-content'>
         <div className={styles.wrapper}>
           <section className={styles.buttonWrapper}>
             <div className={styles.adDropDown}>전체 광고</div>
