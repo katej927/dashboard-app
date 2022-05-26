@@ -18,7 +18,7 @@ const MediaChannel = () => {
   return (
     <main>
       <p className={styles.title}>매체 현황</p>
-      <WhiteSection>
+      <WhiteSection minWidth='50rem'>
         <div className={styles.mediaChannelWrapper}>
           <MediaChannelGraph data={data} />
           <MediaChannelTable data={data} />

@@ -22,7 +22,7 @@ const IntegratedAd = () => {
   return (
     <main>
       <p className={styles.title}>통합 광고 현황</p>
-      <WhiteSection>
+      <WhiteSection minWidth='50rem'>
         <div className={styles.integratedAdWrapper}>
           <TrendDataStatus trendData={trendData} isLoading={isLoading} />
           <GraghTwoTypes integratedAdInfo={data?.curData.report.daily} isLoading={isLoading} />
