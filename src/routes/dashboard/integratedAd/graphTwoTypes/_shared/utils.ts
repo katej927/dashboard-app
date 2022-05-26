@@ -113,7 +113,6 @@ export const convertNumToUnit = (num: number) => {
     { value: 1e6, symbol: '백만' },
     { value: 1e5, symbol: '십만' },
     { value: 1e4, symbol: '만' },
-    { value: 1e3, symbol: '천' },
   ];
   let i;
   for (i = 0; i < transUnit.length; i += 1) {
