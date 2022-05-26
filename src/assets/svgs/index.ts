@@ -6,4 +6,5 @@ export { ReactComponent as GuideIcon } from './guide.svg';
 export { ReactComponent as SettingIcon } from './setting.svg';
 export { ReactComponent as DotIcon } from './dot.svg';
 export { ReactComponent as AlarmIcon } from './alarm.svg';
+export { ReactComponent as ArrowIcon } from './arrow.svg';
 export { ReactComponent as IconDown } from './icon_down.svg';

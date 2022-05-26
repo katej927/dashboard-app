@@ -17,8 +17,8 @@ const AdList = ({ adList }: IProps) => {
         <AdItem title='광고 생성일' value={adList.startDate} type='' />
         <AdItem title='일 희망 예산' value={adList.budget / 10000} type='만원' />
         <AdItem title='광고 수익률' value={adList.report.roas} type='%' />
-        <AdItem title='매출' value={adList.report.convValue} type='만원' />
-        <AdItem title='광고 비용' value={adList.report.cost} type='만원' />
+        <AdItem title='매출' value={Math.floor(adList.report.convValue / 10000).toLocaleString()} type='만원' />
+        <AdItem title='광고 비용' value={Math.floor(adList.report.cost / 10000).toLocaleString()} type='만원' />
       </li>
       <button type='button'>수정하기</button>
     </ul>
