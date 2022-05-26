@@ -110,7 +110,7 @@
         
         1. 선택한 날짜들이 해당하는 월의 주차(n월 n주)를 구함
 
-        2. 동일한 주에 해당하는 날짜들의 수를 구하고 데이터는 모두 더한 후 `해당 주차의 데이터 총합/해당 주차의 날짜 수`를 반환하여 주차별 평균을 반환
+        2. 동일한 주에 해당하는 날짜들의 갯수를 구하고 데이터는 모두 더한 후 `해당 주차의 데이터 총합/해당 주차의 날짜 총 갯수`를 반환하여 주차별 평균을 반환
 - 일별
     
     선택한 기간의 모든 데이터를 일별로 보여주되 x축은 기본적으로 `tickCount` 가 7로 설정되어 실제 사이트와 동일한 x축의 갯수 출현
@@ -121,9 +121,11 @@
   <summary>선택 시 반환할 데이터 계산</summary>
 <br/>
   
-> 3가지의 드롭다운에서 옵션을 선택하면 해당 옵션에 대한 단위 값 (%, 원, 회)과 그래프에 보여줄 데이터를 가공
+> 3가지의 드롭다운에서 옵션을 선택하면 해당 옵션에 대하여 그래프에 그려줄 데이터  가공
 > 
-
+  
+단위 값 (%, 원, 회), 그래프에 보여줄 데이터 배열, y축 값 (y값 중의 최대값) 등
+  
 ```tsx
 const formatReturnData = (unitVal: string, integratedAdInfo: IDay[], btn: Btn, periodOption: PeriodOptions) => {
   const formatedData =
@@ -166,11 +168,40 @@ y2축에 할당할 `VictoryAxis`와 `VictoryLine` 를 key로 연결하여 출현
 
 - 값이 1만 이하일 경우
     
-    천 단위마다 콤마(`,`) 형성
+    반올림으로 소수점 제거 후, 천 단위마다 콤마(`,`) 형성
     
 - 값이 1만~1조 일 경우
     
     한글 단위로 변환 (ex. 5백만원)
+```tsx
+export const convertNumToUnit = (num: number) => {
+  if (num < 10000) {
+    return Math.round(num)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  const transUnit = [
+    { value: 1e12, symbol: '조' },
+    { value: 1e11, symbol: '천억' },
+    { value: 1e10, symbol: '백억' },
+    { value: 1e9, symbol: '십억' },
+    { value: 1e8, symbol: '억' },
+    { value: 1e7, symbol: '천만' },
+    { value: 1e6, symbol: '백만' },
+    { value: 1e5, symbol: '십만' },
+    { value: 1e4, symbol: '만' },
+    { value: 1e3, symbol: '천' },
+  ];
+  let i;
+  for (i = 0; i < transUnit.length; i += 1) {
+    if (num >= transUnit[i].value) {
+      return (num / transUnit[i].value).toFixed(1).replace(/\.?0+$/, '') + transUnit[i].symbol;
+    }
+  }
+  return num;
+};
+```
 </details>
         
 <details>
