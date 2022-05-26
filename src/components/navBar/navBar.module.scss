@@ -10,8 +10,18 @@
     margin: 0 1.7rem;
   }
 
+  .iconDot {
+    position: absolute;
+    top: 0;
+    right: 1.3rem;
+  }
+
   > p {
     font-size: 1.4rem;
     color: colors.$GREY_800;
+  }
+
+  > div {
+    position: relative;
   }
 }
