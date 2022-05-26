@@ -4,24 +4,41 @@
   width: 100%;
 }
 
+.dropDownInputWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1.2rem 2rem;
+  border: 1px solid colors.$GREY_100;
+  border-radius: 10px;
+
+  > p {
+    position: absolute;
+  }
+}
+
 .dropDownButton {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1.2rem 2rem;
   color: colors.$GREY_800;
-  border: 1px solid colors.$GREY_100;
-  border-radius: 10px;
 }
 
 .defaultText {
-  margin-right: 2rem;
+  font-size: 1.4rem;
   color: colors.$GREY_800;
 }
 
 .arrowIcon {
-  color: colors.$WHITE;
+  position: absolute;
+  right: 2rem;
+  margin-left: 3rem;
+  transition: all 0.3s ease;
+}
+
+.animated {
+  transform: rotate(-180deg);
 }
 
 .isSelected {
@@ -35,7 +52,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 0.7rem;
   background-color: colors.$WHITE;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(41, 50, 55, 15%);
