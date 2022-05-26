@@ -4,6 +4,7 @@ import { periodState } from 'states';
 import { VictoryChart, VictoryVoronoiContainer, VictoryLine, VictoryAxis, VictoryLabel } from 'victory';
 import dayjs from 'dayjs';
 
+import { IDay } from 'types/integratedAd';
 import {
   GraphDropDown,
   filterGraphOpt,
@@ -13,8 +14,8 @@ import {
   properties,
   PRIMARY_OPTIONS,
 } from './_shared';
+
 import styles from './graphTwoType.module.scss';
-import { IDay } from 'types/integratedAd';
 
 interface Props {
   integratedAdInfo: IDay[];

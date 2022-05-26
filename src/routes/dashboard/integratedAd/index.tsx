@@ -1,15 +1,18 @@
 import { useQuery } from 'react-query';
-
-import styles from './integrated.module.scss';
-import { IPeriod } from 'types/period';
-import WhiteSection from 'components/whiteSection';
+import { useRecoilValue } from 'recoil';
 import { periodState } from 'states';
+
+import { ITrendDataGrid } from 'types/trendData';
+import { IPeriod } from 'types/period';
+
+import WhiteSection from 'components/whiteSection';
 import TrendDataStatus from './trendData';
+import GraghTwoTypes from './graphTwoTypes';
+
 import { getTrendData } from 'services/trendData';
 import { calTrendData } from 'utils/calTrendStatusData';
-import { ITrendDataGrid } from 'types/trendData';
-import { useRecoilValue } from 'recoil';
-import GraghTwoTypes from './graphTwoTypes';
+
+import styles from './integrated.module.scss';
 
 const IntegratedAd = () => {
   const date = useRecoilValue<IPeriod>(periodState);
