@@ -9,7 +9,9 @@ import DropDown from 'components/dropDown';
 const DROP_DOWN_LIST = ['전체 광고', '진행중인 광고', '중지 광고'];
 
 const AdManagement = () => {
-  const { data, isLoading } = useQuery('adManagement', getAdManagementData);
+  const { data, isLoading } = useQuery('adManagement', getAdManagementData, {
+    staleTime: 1000 * 6 * 5,
+  });
 
   const [adManagementList, setAdManagementList] = useState(data);
 
